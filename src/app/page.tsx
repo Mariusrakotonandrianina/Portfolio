@@ -2,10 +2,17 @@
 
 export default function Home() {
   return (
-    <div className="">
-    <p className="text-2xl font-bold text-center text-blue-500">
-      zzazazeziaiaia
-    </p>
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{
+        backgroundColor: "hsl(var(--background))",
+        color: "hsl(var(--foreground))",
+      }}
+    >
+      <p className="text-2xl font-bold">
+        Thème sombre personnalisé 🌙
+      </p>
     </div>
   );
 }
+

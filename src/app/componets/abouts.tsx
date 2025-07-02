@@ -1,0 +1,22 @@
+
+export default function Abouts({ sectionRef }: { sectionRef: (node?: Element | null) => void }) {
+    return (
+        <section 
+            id="abouts" 
+            className="min-h-screen flex items-center bg-gray-900" 
+            ref={sectionRef}
+            style={{
+                backgroundColor: "hsl(var(--background))",
+                color: "hsl(var(--foreground))",
+            }}
+        >
+            <div className="max-w-6xl mx-auto px-6 py-8 text-white">
+                <h1 className="text-3xl font-bold mb-4">À propos</h1>
+                <p className="text-lg">
+                    Je suis RAKOTONANDRIANINA Dimithry Marius, un développeur passionné par la création de solutions numériques innovantes. 
+                    Mon parcours inclut [insérez ici une brève description de vous, par exemple, vos études, votre expérience, vos passions].
+                </p>
+            </div>
+        </section>
+    );
+}

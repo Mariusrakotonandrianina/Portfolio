@@ -1,75 +1,94 @@
 @import "tailwindcss";
 
 @layer base {
-    :root {
-      --background: 220 44% 100%;
-      --foreground: 220 67% 0%;
-      --muted: 220 39% 92%;
-      --muted-foreground: 220 13% 27%;
-      --popover: 220 44% 100%;
-      --popover-foreground: 220 67% 0%;
-      --card: 0 0% 99%;
-      --card-foreground: 0 0% 0%;
-      --border: 220 2% 93%;
-      --input: 220 2% 93%;
-      --primary: 220 66% 58%;
-      --primary-foreground: 0 0% 100%;
-      --secondary: 220 7% 91%;
-      --secondary-foreground: 220 7% 31%;
-      --accent: 220 13% 82%;
-      --accent-foreground: 220 13% 22%;
-      --destructive: 0 86% 45%;
-      --destructive-foreground: 0 0% 100%;
-      --ring: 220 66% 58%;
-      --chart-1: 220 66% 58%;
-      --chart-2: 220 7% 91%;
-      --chart-3: 220 13% 82%;
-      --chart-4: 220 7% 94%;
-      --chart-5: 220 69% 58%;
-      --radius: 0.5rem;
-    }
-  
-    .dark {
-      --background: 220 43% 4%;
-      --foreground: 220 16% 99%;
-      --muted: 220 39% 8%;
-      --muted-foreground: 220 13% 73%;
-      --popover: 220 43% 4%;
-      --popover-foreground: 220 16% 99%;
-      --card: 220 43% 5%;
-      --card-foreground: 0 0% 100%;
-      --border: 220 2% 13%;
-      --input: 220 2% 13%;
-      --primary: 220 66% 58%;
-      --primary-foreground: 0 0% 100%;
-      --secondary: 220 7% 9%;
-      --secondary-foreground: 220 7% 69%;
-      --accent: 220 13% 16%;
-      --accent-foreground: 220 13% 76%;
-      --destructive: 0 86% 49%;
-      --destructive-foreground: 0 0% 100%;
-      --ring: 220 66% 58%;
-      --chart-1: 220 66% 58%;
-      --chart-2: 220 7% 9%;
-      --chart-3: 220 13% 16%;
-      --chart-4: 220 7% 12%;
-      --chart-5: 220 69% 58%;
-    }
-    * {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    }
+  :root {
+    /* Mode clair - Palette gris, bleu et noir harmonieuse */
+    --background: 0 0% 98%;           /* Fond très clair (blanc cassé) */
+    --foreground: 0 0% 10%;           /* Texte principal noir */
+    --muted: 220 15% 92%;             /* Fond muted gris clair */
+    --muted-foreground: 220 10% 40%;  /* Texte muted gris moyen */
+    --popover: 0 0% 100%;             /* Fond popover blanc */
+    --popover-foreground: 0 0% 10%;   /* Texte popover noir */
+    --card: 0 0% 100%;                /* Fond carte blanc */
+    --card-foreground: 0 0% 10%;      /* Texte carte noir */
+    --border: 220 15% 88%;            /* Bordures gris clair */
+    --input: 220 15% 90%;             /* Fond input gris très clair */
+    --primary: 220 66% 58%;           /* Bleu primaire (inchangé) */
+    --primary-foreground: 0 0% 100%;  /* Texte sur primaire blanc */
+    --secondary: 220 10% 85%;         /* Fond secondaire gris */
+    --secondary-foreground: 220 10% 20%; /* Texte secondaire gris foncé */
+    --accent: 220 15% 88%;            /* Fond accent gris clair */
+    --accent-foreground: 220 10% 20%; /* Texte accent gris foncé */
+    --destructive: 0 84% 60%;         /* Rouge destructif */
+    --destructive-foreground: 0 0% 100%; /* Texte destructif blanc */
+    --ring: 220 66% 58%;              /* Couleur focus ring */
+    --chart-1: 220 66% 58%;
+    --chart-2: 220 10% 85%;
+    --chart-3: 220 15% 88%;
+    --chart-4: 220 20% 90%;
+    --chart-5: 220 60% 65%;
+    --radius: 0.5rem;
+  }
 
-    .theme-transition {
-      transition: all 0.3s ease;
-    }
-    
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+  .dark {
+    /* Mode sombre - Palette harmonieuse */
+    --background: 220 43% 4%;         /* Fond très sombre */
+    --foreground: 220 16% 99%;        /* Texte principal clair */
+    --muted: 220 39% 8%;              /* Fond muted sombre */
+    --muted-foreground: 220 13% 73%;  /* Texte muted clair */
+    --popover: 220 43% 4%;            /* Fond popover sombre */
+    --popover-foreground: 220 16% 99%; /* Texte popover clair */
+    --card: 220 43% 5%;               /* Fond carte sombre */
+    --card-foreground: 0 0% 100%;     /* Texte carte blanc */
+    --border: 220 2% 13%;             /* Bordures sombres */
+    --input: 220 2% 13%;              /* Fond input sombre */
+    --primary: 220 66% 58%;           /* Bleu primaire (inchangé) */
+    --primary-foreground: 0 0% 100%;  /* Texte sur primaire blanc */
+    --secondary: 220 7% 9%;           /* Fond secondaire sombre */
+    --secondary-foreground: 220 7% 69%; /* Texte secondaire clair */
+    --accent: 220 13% 16%;            /* Fond accent sombre */
+    --accent-foreground: 220 13% 76%; /* Texte accent clair */
+    --destructive: 0 86% 49%;         /* Rouge destructif */
+    --destructive-foreground: 0 0% 100%; /* Texte destructif blanc */
+    --ring: 220 66% 58%;              /* Couleur focus ring */
+    --chart-1: 220 66% 58%;
+    --chart-2: 220 7% 9%;
+    --chart-3: 220 13% 16%;
+    --chart-4: 220 7% 12%;
+    --chart-5: 220 69% 58%;
   }
+
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
-  
+
+  .theme-transition {
+    transition: all 0.3s ease;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Amélioration du navbar pour une meilleure cohérence */
+  .navbar-blur {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .navbar-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Classe pour les cartes avec un style cohérent */
+  .card-style {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+}

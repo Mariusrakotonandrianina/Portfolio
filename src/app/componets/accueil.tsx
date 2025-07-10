@@ -340,32 +340,6 @@ export default function Accueil({
               </Link>
             </motion.div>
           </motion.div>
-
-          <motion.div
-            className="flex space-x-8 justify-center md:justify-start pt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[hsl(var(--primary))]">
-                50+
-              </div>
-              <div className="text-sm opacity-70">Projects</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[hsl(var(--primary))]">
-                99%
-              </div>
-              <div className="text-sm opacity-70">Success Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[hsl(var(--primary))]">
-                24/7
-              </div>
-              <div className="text-sm opacity-70">Support</div>
-            </div>
-          </motion.div>
         </motion.div>
 
         <motion.div

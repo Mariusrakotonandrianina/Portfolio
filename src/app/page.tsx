@@ -17,10 +17,10 @@ export default function Home() {
   return (
     <div
       className="min-h-screen items-center justify-center"
-      style={{
+     /* style={{
         backgroundColor: "hsl(var(--background))",
         color: "hsl(var(--foreground))",
-      }}
+      }}*/
     >
             <Accueil sectionRef={accueilRef} />
             <Abouts sectionRef={aboutRef} />

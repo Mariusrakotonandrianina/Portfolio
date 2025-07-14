@@ -165,7 +165,7 @@ const ThreeCanvas: React.FC = () => {
 
     const geometry = new THREE.IcosahedronGeometry(1.5, 1);
     const material = new THREE.MeshStandardMaterial({
-      color: new THREE.Color("hsl(var(--primary))"),
+      color: new THREE.Color("hsl(220 66% 58%)"),
       metalness: 0.7,
       roughness: 0.3,
       wireframe: false,
@@ -222,7 +222,7 @@ const ThreeCanvas: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-md h-[400px] bg-gradient-to-br from-[hsl(var(--primary)/.15)] to-[hsl(var(--primary)/.05)] 
+      className="relative w-full max-w-md h-[400px] bg-gradient-to-br from-primary/15 to-primary/5 
         rounded-[20px] flex items-center justify-center overflow-hidden group shadow-2xl"
     >
       <canvas
@@ -230,15 +230,15 @@ const ThreeCanvas: React.FC = () => {
         className="w-full h-full group-hover:scale-110 transition-transform duration-500 ease-out"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[hsl(var(--primary)/.1)] 
-        group-hover:from-[hsl(var(--primary)/.05)] transition-all duration-700"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-primary/10 
+        group-hover:from-primary/5 transition-all duration-700"
       />
 
       {/* Effet de particules */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[hsl(var(--primary))] rounded-full animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-[hsl(var(--primary))] rounded-full animate-pulse delay-500"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[hsl(var(--primary))] rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-primary rounded-full animate-pulse delay-500"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-primary rounded-full animate-pulse delay-1000"></div>
       </div>
     </div>
   );
@@ -265,16 +265,12 @@ export default function Accueil({
   return (
     <section
       id="accueil"
-      className="min-h-screen flex items-center relative overflow-hidden"
+      className="min-h-screen flex items-center relative overflow-hidden bg-background text-foreground"
       ref={sectionRef}
-      style={{
-        backgroundColor: "hsl(var(--background))",
-        color: "hsl(var(--foreground))",
-      }}
     >
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[hsl(var(--primary)/.05)] rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[hsl(var(--primary)/.03)] rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/3 rounded-full blur-3xl"></div>
       </div>
 
       <div className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12 min-h-[600px] w-full relative z-10">
@@ -287,14 +283,14 @@ export default function Accueil({
         >
           <motion.div variants={tagVariants} className="relative inline-block">
             <motion.p
-              className="font-bold text-2xl md:text-3xl tracking-wide text-[hsl(var(--primary))] relative z-10"
+              className="font-bold text-2xl md:text-3xl tracking-wide text-primary relative z-10"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
               WEBSITE DEVELOPMENT
             </motion.p>
             <motion.div
-              className="absolute inset-0 bg-[hsl(var(--primary)/.1)] rounded-lg -z-10"
+              className="absolute inset-0 bg-primary/10 rounded-lg -z-10"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1.2, delay: 1 }}
@@ -303,14 +299,14 @@ export default function Accueil({
           </motion.div>
 
           <motion.h1
-            className="text-4xl md:text-5xl font-extrabold leading-tight"
+            className="text-4xl md:text-5xl font-extrabold leading-tight text-foreground"
             variants={titleVariants}
           >
             {splitText("Delivering IT Solutions That Empower Smarter Work")}
           </motion.h1>
 
           <motion.p
-            className="text-lg max-w-md mx-auto md:mx-0 opacity-80 leading-relaxed"
+            className="text-lg max-w-md mx-auto md:mx-0 opacity-80 leading-relaxed text-muted-foreground"
             variants={descriptionVariants}
           >
             We provide innovative IT solutions that streamline your workflow,
@@ -327,12 +323,12 @@ export default function Accueil({
             >
               <Link
                 href="#contacts"
-                className="relative inline-block px-8 py-4 bg-[hsl(var(--primary))] text-[hsl(var(--background))] font-semibold rounded-lg 
+                className="relative inline-block px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg 
                   overflow-hidden transition-all duration-300 shadow-lg group"
               >
                 <span className="relative z-10">Discover More</span>
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary)/.8)]"
+                  className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "0%" }}
                   transition={{ duration: 0.3 }}

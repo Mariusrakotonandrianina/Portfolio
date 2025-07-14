@@ -14,16 +14,16 @@ export default function Footer() {
                         <Link href="/">Accueil</Link>
                     </li>
                     <li>
-                        <Link href="/">À propos</Link>
+                        <Link href="#abouts">À propos</Link>
                     </li>
                     <li>
-                        <Link href="/">Projets</Link>
+                        <Link href="#projects">Projets</Link>
                     </li>
                     <li>
-                        <Link href="/">Compétences</Link>
+                        <Link href="#skills">Compétences</Link>
                     </li>
                     <li>
-                        <Link href="/">Contacts</Link>
+                        <Link href="#contacts">Contacts</Link>
                     </li>
                 </ul>
             </div>

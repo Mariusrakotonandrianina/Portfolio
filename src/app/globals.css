@@ -11,7 +11,7 @@
     --popover-foreground: 0 0% 10%;   /* Texte popover noir */
     --card: 0 0% 100%;                /* Fond carte blanc */
     --card-foreground: 0 0% 10%;      /* Texte carte noir */
-    --border: 220 15% 88%;            /* Bordures gris clair */
+    --border: 200 100% 80%;            /* Bordures bleu clair */
     --input: 220 15% 90%;             /* Fond input gris très clair */
     --primary: 220 66% 58%;           /* Bleu primaire (inchangé) */
     --primary-foreground: 0 0% 100%;  /* Texte sur primaire blanc */
@@ -60,6 +60,11 @@
 
   * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 
   .theme-transition {

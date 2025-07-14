@@ -69,8 +69,8 @@ export default function Navbar() {
   return (
     <motion.nav
       className={`w-full sm:px-10 sm:py-4 fixed top-0 left-0 z-50 transition-all duration-300 navbar-blur ${
-        scrolled 
-          ? "bg-[hsl(var(--background)/.98)] shadow-lg border-b border-[hsl(var(--border))]" 
+        scrolled
+          ? "bg-[hsl(var(--background)/.98)] shadow-lg border-b border-[hsl(var(--border))]"
           : "bg-[hsl(var(--background)/.92)]"
       }`}
       initial={{ y: -100 }}
@@ -78,26 +78,26 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between">
-        <motion.div 
+        <motion.div
           className="flex items-center order-1"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="flex items-center rounded-full px-3 py-2 card-style">
+          <div className="flex items-center rounded-full px-4 py-2 bg-[hsl(var(--background))] shadow-md hover:shadow-lg transition-shadow">
             <Image
-              className="w-10 h-10 rounded-full object-cover ring-2 ring-[hsl(var(--border))]"
+              className="w-12 h-12 rounded-full object-cover"
               src="/image/logoM.jpeg"
-              alt="RAKOTONANDRIANINA Dimithry Marius"
-              width={40}
-              height={40}
+              alt="RAKOTONANDRIANINA Dimithry Marius - Portfolio"
+              width={48}
+              height={48}
               priority
             />
-            <span className="font-sans text-[hsl(var(--foreground))] text-sm sm:text-base font-semibold ml-3 mr-2">
-              RAKOTONANDRIANINA Dimithry Marius
-            </span>
+            <h1 className="font-sans text-[hsl(var(--foreground))] text-base sm:text-lg font-bold ml-4 tracking-tight">
+              Dimithry's Portfolio
+            </h1>
           </div>
         </motion.div>
-
+        
         <button
           className="lg:hidden text-[hsl(var(--foreground))] text-2xl focus:outline-none p-2 rounded-md hover:bg-[hsl(var(--accent))] transition-colors border border-[hsl(var(--border))]"
           onClick={() => setIsOpen(!isOpen)}
@@ -118,7 +118,11 @@ export default function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className={`lg:hidden ${isOpen ? "block" : "hidden"} bg-[hsl(var(--card))] rounded-lg border border-[hsl(var(--border))] p-4 mt-4`}>
+          <div
+            className={`lg:hidden ${
+              isOpen ? "block" : "hidden"
+            } bg-[hsl(var(--card))] rounded-lg border border-[hsl(var(--border))] p-4 mt-4`}
+          >
             <ul className="flex flex-col gap-3 text-base font-medium font-sans tracking-wide">
               {[
                 { href: "#accueil", label: "Accueil" },
@@ -127,14 +131,16 @@ export default function Navbar() {
                 { href: "#projects", label: "Projets" },
                 { href: "#contacts", label: "Contacts" },
               ].map((item) => (
-                <motion.li 
+                <motion.li
                   key={item.href}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Link 
-                    href={item.href} 
-                    className={`${isActive(item.href)} px-3 py-2 rounded-md block hover:bg-[hsl(var(--accent))] transition-all duration-200`}
+                  <Link
+                    href={item.href}
+                    className={`${isActive(
+                      item.href
+                    )} px-3 py-2 rounded-md block hover:bg-[hsl(var(--accent))] transition-all duration-200`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
@@ -155,14 +161,16 @@ export default function Navbar() {
               { href: "#projects", label: "Projets" },
               { href: "#contacts", label: "Contacts" },
             ].map((item) => (
-              <motion.li 
+              <motion.li
                 key={item.href}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <Link 
-                  href={item.href} 
-                  className={`${isActive(item.href)} px-3 py-2 rounded-md hover:bg-[hsl(var(--accent))] transition-all duration-200`}
+                <Link
+                  href={item.href}
+                  className={`${isActive(
+                    item.href
+                  )} px-3 py-2 rounded-md hover:bg-[hsl(var(--accent))] transition-all duration-200`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

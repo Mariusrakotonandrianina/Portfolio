@@ -79,7 +79,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between">
         <motion.div
-          className="flex items-center order-1"
+          className="flex items-center order-1 mr-10"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
@@ -177,7 +177,7 @@ export default function Navbar() {
                 </Link>
               </motion.li>
             ))}
-            <li>
+            <li className="px-10">
               <AnimatedThemeToggle />
             </li>
           </ul>

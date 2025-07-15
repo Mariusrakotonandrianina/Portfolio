@@ -89,13 +89,13 @@ export default function Navbar() {
       className={`w-full px-4 sm:px-6 lg:px-8 py-4 fixed top-0 z-50 transition-all duration-500 ease-in-out ${
         scrolled
           ? "bg-[hsl(var(--background))]/95 backdrop-blur-xl shadow-lg border-b border-[hsl(var(--border))]/20"
-          : "bg-[hsl(var(--background))]/80 backdrop-blur-md"
+          : "bg-transparent"
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex items-center justify-between">
           {/* Logo Section */}
           <motion.div

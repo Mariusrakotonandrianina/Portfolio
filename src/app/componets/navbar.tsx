@@ -116,7 +116,7 @@ export default function Navbar() {
                 />
               </div>
               <div className="ml-3">
-                <h1 className="font-sans text-[hsl(var(--foreground))] text-lg sm:text-xl font-bold tracking-tight group-hover:text-[hsl(var(--primary))] transition-colors duration-300 bg-gradient-to-r from-[hsl(var(--foreground))] to-[hsl(var(--primary))] bg-clip-text text-transparent">
+                <h1 className="font-sans text-lg sm:text-xl font-bold tracking-tight group-hover:text-[hsl(var(--primary))] transition-colors duration-300 bg-gradient-to-r from-[hsl(var(--foreground))] to-[hsl(var(--primary))] bg-clip-text text-transparent">
                   Dimithry
                 </h1>
                 <p className="text-xs text-[hsl(var(--foreground))]/60 font-semibold tracking-widest uppercase hidden sm:block">

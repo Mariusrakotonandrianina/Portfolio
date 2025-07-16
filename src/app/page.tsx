@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen items-center justify-center"
+      className="min-h-screen items-center justify-center"    
     >
             <Accueil sectionRef={accueilRef} />
             <Abouts sectionRef={aboutRef} />

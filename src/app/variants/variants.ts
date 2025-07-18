@@ -63,16 +63,20 @@ export const descriptionVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 60,
+    scale: 0.95,
     filter: "blur(10px)",
   },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     filter: "blur(0px)",
     transition: {
-      duration: 1,
+      duration: 1.2,
       ease: [0.4, 0, 0.2, 1],
       delay: 0.4,
+      type: "spring",
+      stiffness: 80,
     },
   },
 };

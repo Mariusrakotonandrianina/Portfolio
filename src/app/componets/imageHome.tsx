@@ -25,7 +25,7 @@ export default function ImageHome() {
             }}
           />
           <motion.div
-            className="absolute -inset-3 sm:-inset-4 md:-inset-5 lg:-inset-6 border-2 border-[hsl(var(--primary))]/35 rounded-full"
+            className="absolute -inset-2 sm:-inset-3 md:-inset-4 lg:-inset-5 xl:-inset-6 2xl:-inset-8 border-2 border-[hsl(var(--primary))]/35 rounded-full"
             animate={{
               rotate: [0, 360],
             }}
@@ -36,7 +36,7 @@ export default function ImageHome() {
             }}
           />
           <motion.div
-            className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-44 xl:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-[hsl(var(--primary))]/30"
+            className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80 2xl:w-96 2xl:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-[hsl(var(--primary))]/30"
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
@@ -44,9 +44,9 @@ export default function ImageHome() {
             <Image
               src="/image/2613.JPG"
               alt="RAKOTONANDRIANINA Dimithry Marius - Développeur Full Stack"
-              width={176}
-              height={176}
-              className="w-full h-full object-cover"
+              width={384}
+              height={384}
+              className="w-full h-auto object-contain"
               priority
             />
             <motion.div

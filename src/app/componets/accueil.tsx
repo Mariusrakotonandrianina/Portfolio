@@ -41,14 +41,14 @@ export default function Accueil({
       {/* Background Image with Semi-Transparent Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/image/background1.jpeg"
+          src="/image/background3.jpeg"
           alt="Background Image"
           fill
           className="object-cover object-center"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[hsl(var(--background))]/70 backdrop-blur-lg" />
+        <div className="absolute inset-0 bg-[hsl(var(--background))]/100 backdrop-blur-lg" />
       </div>
 
       {/* Gradient Backgrounds */}
@@ -61,87 +61,71 @@ export default function Accueil({
       {/* Floating Elements */}
       <FloatingElements />
 
-      {/* Main Container with Grid Layout - Optimized for full screen */}
+      {/* Main Container with Grid Layout - Optimized for all screen sizes */}
       <div className="relative z-10 w-full h-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center justify-center min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)]">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 lg:gap-8 items-center justify-center min-h-[(calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)]">
           {/* Text Content */}
-          <div className="flex flex-col justify-center h-full order-1 md:order-1">
+          <div className="flex flex-col justify-center h-full">
             <motion.div
-              className="space-y-3 sm:space-y-4 md:space-y-6 text-left w-full"
+              className="space-y-2 sm:space-y-3 md:space-y-4 text-left w-full"
               initial="hidden"
               whileInView="visible"
               variants={containerVariants}
               viewport={{ once: true, amount: 0.3 }}
             >
-              {/* Professional Tag */}
+              {/* Professional Tag - Centré */}
               <motion.div
                 variants={tagVariants}
-                className="relative inline-block mb-3 sm:mb-4 md:mb-6"
+                className="relative flex justify-center mb-2 sm:mb-3 md:mb-4"
               >
-                <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-wider uppercase text-[hsl(var(--primary-foreground))] relative z-10 px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3">
-                  <TypewriterText text="Développeur Full Stack" delay={0} />
-                </p>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/5 rounded-xl border border-[hsl(var(--primary))]/30 -z-10"
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 1.6 }}
-                  style={{ transformOrigin: "left" }}
-                />
+                <div className="relative inline-block mb-3 sm:mb-4 md:mb-5">
+                  <p className="text-center font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl tracking-wider uppercase text-[hsl(var(--primary-foreground))] relative z-10 px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 lg:py-2.5">
+                    <TypewriterText text="Développeur Full Stack" delay={0} />
+                  </p>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/5 rounded-xl border border-[hsl(var(--primary))]/30 -z-10"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    transition={{ duration: 1.2, delay: 1.6 }}
+                    style={{ transformOrigin: "center" }}
+                  />
+                </div>
               </motion.div>
 
-              {/* Main Title */}
+              {/* Main Title with Typewriter Effect */}
               <motion.h1
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-[hsl(var(--foreground))] tracking-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight text-black tracking-tight mb-2 sm:mb-3 md:mb-4 lg:mb-6 text-center mx-auto"
                 variants={titleVariants}
               >
-                {splitText("Bonjour, je suis")}
-                <br />
-                <motion.span
-                  className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/80 bg-clip-text text-transparent font-extrabold tracking-wider"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {splitText("Dimithry Marius")}
-                </motion.span>
+                <TypewriterText
+                  text="Je suis RAKOTONANDRIANINA Dimithry Marius"
+                  delay={150}
+                  className="text-black"
+                />
               </motion.h1>
 
               {/* Description */}
               <motion.div
-                className="space-y-3 sm:space-y-4 md:space-y-5 w-full mb-4 sm:mb-6 md:mb-8 sm:ml-4   md:ml-8"
+                className="relative bg-gradient-to-r from-[hsl(var(--primary))]/10 to-[hsl(var(--primary))]/5 rounded-xl border-2 border-[hsl(var(--primary))]/30 animate-border-gradient p-2 sm:p-4 md:p-6 backdrop-blur-sm space-y-2 sm:space-y-3 md:space-y-4 w-full mb-2 sm:mb-4 md:mb-6"
                 variants={descriptionVariants}
               >
                 <motion.p
-                  className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl opacity-90 leading-relaxed text-[hsl(var(--foreground))]/85 font-medium"
-                  whileHover={{ scale: 1.01, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  Développeur passionné spécialisé dans la création d'applications
-                  web modernes et performantes. J'aide les entreprises à
-                  transformer leurs idées en solutions digitales innovantes.
-                </motion.p>
-
-                <motion.p
-                  className="text-sm sm:text-base md:text-lg lg:text-xl opacity-80 leading-relaxed text-[hsl(var(--foreground))]/75"
+                  className="text-xs sm:text-sm md:text-base lg:text-lg opacity-75 leading-relaxed text-[hsl(var(--foreground))]"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
                 >
-                  Avec plus de 3 ans d'expérience, je maîtrise les technologies
-                  frontend et backend :
-                  <motion.span
-                    className="text-[hsl(var(--primary))] font-semibold"
-                    initial={{ opacity: 0, x: 15 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 }}
-                  >
-                    React, Next.js, Node.js, TypeScript, PostgreSQL, MongoDB
-                  </motion.span>
-                  et bien d'autres.
+                  Développeur passionné spécialisé dans la création
+                  d’applications web modernes et performantes. J’aide les
+                  entreprises à transformer leurs idées en solutions digitales
+                  innovantes. Grâce à une approche centrée sur la structuration
+                  des données et l’optimisation des flux d’information, je
+                  conçois des solutions fiables, évolutives et parfaitement
+                  adaptées aux enjeux métiers.
                 </motion.p>
 
                 <motion.p
-                  className="text-sm sm:text-base md:text-lg lg:text-xl opacity-75 leading-relaxed text-[hsl(var(--foreground))]/70"
+                  className="text-xs sm:text-sm md:text-base lg:text-lg opacity-75 leading-relaxed text-[hsl(var(--foreground))]"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
@@ -156,11 +140,11 @@ export default function Accueil({
           </div>
 
           {/* Image and Buttons */}
-          <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 order-2 md:order-2 h-full pl-0 md:pl-2 lg:pl-3">
-            <div className="flex-1 flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 h-full">
+            <div className="flex-1 flex items-center justify-center w-full">
               <ImageHome />
             </div>
-            <div className="flex-shrink-0 mb-16">
+            <div className="flex-shrink-0 mb-8 sm:mb-12 md:mb-16">
               <ButtonHome />
             </div>
           </div>

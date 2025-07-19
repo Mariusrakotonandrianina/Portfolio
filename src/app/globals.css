@@ -89,4 +89,48 @@
   .navbar-shadow {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes border-gradient {
+    0% {
+      border-image-source: linear-gradient(45deg, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.6));
+    }
+    50% {
+      border-image-source: linear-gradient(45deg, hsl(var(--primary) / 0.6), hsl(var(--primary) / 0.3));
+    }
+    100% {
+      border-image-source: linear-gradient(45deg, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.6));
+    }
+  }
+  
+  .animate-gradient {
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+  
+  .animate-border-gradient {
+    animation: border-gradient 4s ease-in-out infinite;
+  }
 }

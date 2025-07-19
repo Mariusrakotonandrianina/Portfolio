@@ -19,18 +19,6 @@ export default function Accueil({
 }: {
   sectionRef: (node?: Element | null) => void;
 }) {
-  const splitText = (text: string) => {
-    return text.split(" ").map((word, index) => (
-      <motion.span
-        key={index}
-        variants={wordVariants}
-        className="inline-block mr-1 sm:mr-2"
-        style={{ transformOrigin: "50% 100%" }}
-      >
-        {word}
-      </motion.span>
-    ));
-  };
 
   return (
     <section
@@ -61,25 +49,37 @@ export default function Accueil({
       {/* Floating Elements */}
       <FloatingElements />
 
-      {/* Main Container with Grid Layout - Optimized for all screen sizes */}
-      <div className="relative z-10 w-full h-full mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
-        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 lg:gap-8 items-center justify-center min-h-[(calc(100vh-4rem)] md:min-h-[calc(100vh-6rem)]">
-          {/* Text Content */}
-          <div className="flex flex-col justify-center h-full">
+      {/* Main Container - Layout adaptatif pour mobile */}
+      <div className="relative z-10 w-full h-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
+        {/* Layout mobile-first : colonne unique sur petits écrans, grid sur grands écrans */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-center justify-center min-h-[calc(100vh-2rem)] sm:min-h-[calc(100vh-3rem)] md:min-h-[calc(100vh-4rem)]">
+          
+          {/* Section Image - Première sur mobile */}
+          <div className="order-1 lg:order-2 flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 w-full">
+            <div className="flex-1 flex items-center justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full">
+              <ImageHome />
+            </div>
+            <div className="flex-shrink-0 mt-2 sm:mt-4 md:mt-6">
+              <ButtonHome />
+            </div>
+          </div>
+
+          {/* Section Texte - Deuxième sur mobile */}
+          <div className="order-2 lg:order-1 flex flex-col justify-center h-full w-full">
             <motion.div
-              className="space-y-2 sm:space-y-3 md:space-y-4 text-left w-full"
+              className="space-y-3 sm:space-y-4 md:space-y-5 text-center lg:text-left w-full"
               initial="hidden"
               whileInView="visible"
               variants={containerVariants}
               viewport={{ once: true, amount: 0.3 }}
             >
-              {/* Professional Tag - Centré */}
+              {/* Professional Tag */}
               <motion.div
                 variants={tagVariants}
-                className="relative flex justify-center mb-2 sm:mb-3 md:mb-4"
+                className="relative flex justify-center lg:justify-start mb-3 sm:mb-4 md:mb-5"
               >
-                <div className="relative inline-block mb-3 sm:mb-4 md:mb-5">
-                  <p className="text-center font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl tracking-wider uppercase text-[hsl(var(--primary-foreground))] relative z-10 px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 lg:py-2.5">
+                <div className="relative inline-block">
+                  <p className="text-center font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wider uppercase text-[hsl(var(--primary-foreground))] relative z-10 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5">
                     <TypewriterText text="Développeur Full Stack" delay={0} />
                   </p>
                   <motion.div
@@ -92,9 +92,9 @@ export default function Accueil({
                 </div>
               </motion.div>
 
-              {/* Main Title with Typewriter Effect */}
+              {/* Main Title */}
               <motion.h1
-                className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight text-black tracking-tight mb-2 sm:mb-3 md:mb-4 lg:mb-6 text-center mx-auto"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-black tracking-tight mb-4 sm:mb-5 md:mb-6 text-center lg:text-left"
                 variants={titleVariants}
               >
                 <TypewriterText
@@ -104,49 +104,98 @@ export default function Accueil({
                 />
               </motion.h1>
 
-              {/* Description */}
+              {/* Description avec animation de dégradé */}
               <motion.div
-                className="relative bg-gradient-to-r from-[hsl(var(--primary))]/10 to-[hsl(var(--primary))]/5 rounded-xl border-2 border-[hsl(var(--primary))]/30 animate-border-gradient p-2 sm:p-4 md:p-6 backdrop-blur-sm space-y-2 sm:space-y-3 md:space-y-4 w-full mb-2 sm:mb-4 md:mb-6"
+                className="relative rounded-xl p-4 sm:p-5 md:p-6 backdrop-blur-sm space-y-3 sm:space-y-4 w-full overflow-hidden"
                 variants={descriptionVariants}
               >
-                <motion.p
-                  className="text-xs sm:text-sm md:text-base lg:text-lg opacity-75 leading-relaxed text-[hsl(var(--foreground))]"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                >
-                  Développeur passionné spécialisé dans la création
-                  d’applications web modernes et performantes. J’aide les
-                  entreprises à transformer leurs idées en solutions digitales
-                  innovantes. Grâce à une approche centrée sur la structuration
-                  des données et l’optimisation des flux d’information, je
-                  conçois des solutions fiables, évolutives et parfaitement
-                  adaptées aux enjeux métiers.
-                </motion.p>
+                {/* Arrière-plan animé avec dégradé */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl"
+                  style={{
+                    background: `
+                      linear-gradient(
+                        45deg, 
+                        hsl(var(--primary) / 0.1), 
+                        hsl(var(--primary) / 0.05), 
+                        hsl(var(--primary) / 0.15),
+                        hsl(var(--primary) / 0.08),
+                        hsl(var(--primary) / 0.12)
+                      )
+                    `,
+                    backgroundSize: '400% 400%',
+                  }}
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 6,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }}
+                />
+                
+                {/* Bordure animée */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl border-2"
+                  style={{
+                    borderImage: `
+                      linear-gradient(
+                        45deg,
+                        hsl(var(--primary) / 0.3),
+                        hsl(var(--primary) / 0.6),
+                        hsl(var(--primary) / 0.2),
+                        hsl(var(--primary) / 0.5),
+                        hsl(var(--primary) / 0.3)
+                      ) 1
+                    `,
+                    backgroundSize: '400% 400%',
+                  }}
+                  animate={{
+                    filter: [
+                      'hue-rotate(0deg)',
+                      'hue-rotate(20deg)',
+                      'hue-rotate(0deg)',
+                    ],
+                  }}
+                  transition={{
+                    duration: 4,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }}
+                />
 
-                <motion.p
-                  className="text-xs sm:text-sm md:text-base lg:text-lg opacity-75 leading-relaxed text-[hsl(var(--foreground))]"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                >
-                  Mon approche combine créativité et expertise technique pour
-                  livrer des solutions sur mesure qui répondent aux besoins
-                  spécifiques de chaque client. De la conception à la mise en
-                  production, je vous accompagne dans tous vos projets web.
-                </motion.p>
+                {/* Contenu texte */}
+                <div className="relative z-10">
+                  <motion.p
+                    className="text-sm sm:text-base md:text-lg opacity-80 leading-relaxed text-[hsl(var(--foreground))] mb-3 sm:mb-4"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7 }}
+                  >
+                    Développeur passionné spécialisé dans la création
+                    d'applications web modernes et performantes. J'aide les
+                    entreprises à transformer leurs idées en solutions digitales
+                    innovantes. Grâce à une approche centrée sur la structuration
+                    des données et l'optimisation des flux d'information, je
+                    conçois des solutions fiables, évolutives et parfaitement
+                    adaptées aux enjeux métiers.
+                  </motion.p>
+
+                  <motion.p
+                    className="text-sm sm:text-base md:text-lg opacity-80 leading-relaxed text-[hsl(var(--foreground))]"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.9 }}
+                  >
+                    Mon approche combine créativité et expertise technique pour
+                    livrer des solutions sur mesure qui répondent aux besoins
+                    spécifiques de chaque client. De la conception à la mise en
+                    production, je vous accompagne dans tous vos projets web.
+                  </motion.p>
+                </div>
               </motion.div>
             </motion.div>
-          </div>
-
-          {/* Image and Buttons */}
-          <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 h-full">
-            <div className="flex-1 flex items-center justify-center w-full">
-              <ImageHome />
-            </div>
-            <div className="flex-shrink-0 mb-8 sm:mb-12 md:mb-16">
-              <ButtonHome />
-            </div>
           </div>
         </div>
       </div>

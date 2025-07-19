@@ -59,6 +59,7 @@ export const wordVariants: Variants = {
   },
 };
 
+
 export const descriptionVariants: Variants = {
   hidden: {
     opacity: 0,

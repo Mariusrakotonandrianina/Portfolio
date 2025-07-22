@@ -83,23 +83,6 @@ export const descriptionVariants: Variants = {
 };
 
 export const buttonVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.6,
-    y: 50,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.4, 0, 0.2, 1],
-      delay: 0.6,
-      type: "spring",
-      stiffness: 150,
-    },
-  },
   hover: {
     scale: 1.15,
     y: -8,
@@ -136,3 +119,36 @@ export const imageVariants: Variants = {
     },
   },
 };
+
+export const letterVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.3,
+    rotateY: 90,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateY: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.4, 0, 0.2, 1],
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+};
+
+export const menuVariants: Variants = {
+    closed: {
+      opacity: 0,
+      x: "100%",
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 120, damping: 20 },
+    },
+  };

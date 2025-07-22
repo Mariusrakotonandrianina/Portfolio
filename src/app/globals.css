@@ -3,8 +3,8 @@
 @layer base {
   :root {
     /* Mode clair - Palette gris, bleu et noir harmonieuse */
-    --background: 0 0% 98%;           /* Fond très clair (blanc cassé) */
-    --foreground: 0 0% 10%;           /* Texte principal noir */
+    --background: 0 0% 100%;           /* Fond très clair (blanc cassé) */
+    --foreground: 0 0% 5%;           /* Texte principal noir */
     --muted: 220 15% 92%;             /* Fond muted gris clair */
     --muted-foreground: 220 10% 40%;  /* Texte muted gris moyen */
     --popover: 0 0% 100%;             /* Fond popover blanc */
@@ -28,6 +28,7 @@
     --chart-4: 220 20% 90%;
     --chart-5: 220 60% 65%;
     --radius: 0.5rem;
+    
   }
 
   .dark {
@@ -56,6 +57,22 @@
     --chart-3: 220 13% 16%;
     --chart-4: 220 7% 12%;
     --chart-5: 220 69% 58%;
+  }
+  /* Style 6 - Gradient Animé */
+  /*.animated-gradient-name {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #3b82f6, #d1d5db, #ffffff, #60a5fa);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.01em;
+    animation: gradientShift 3s ease-in-out infinite;
+  }  
+  */
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   * {

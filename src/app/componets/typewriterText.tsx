@@ -37,10 +37,10 @@ export default function TypewriterText({
       style={{
         // Style adaptatif avec intensité réduite
         textShadow: `
-          0 0 5px hsl(var(--primary) / 0.6),
-          0 0 10px hsl(var(--primary) / 0.4),
-          0 0 15px hsl(var(--primary) / 0.3),
-          0 2px 4px rgba(0, 0, 0, 0.3)
+          0 0 5px hsl(var(--primary) / 0.4),
+          0 0 10px hsl(var(--primary) / 0.2),
+          0 0 15px hsl(var(--primary) / 0.1),
+          0 2px 4px rgba(0, 0, 0, 0.1)
         `,
         color: "hsl(var(--foreground))",
         WebkitTextStroke: "0.5px hsl(var(--primary) / 0.3)",

@@ -9,24 +9,22 @@ import ImageHome from "./imageHome";
 import {
   containerVariants,
   tagVariants,
-  titleVariants,
-  wordVariants,
   descriptionVariants,
 } from "../variants/variants";
+import NameStyled from "./namestyled";
+import DescriptionHome from "./descriptionHome";
 
 export default function Accueil({
   sectionRef,
 }: {
   sectionRef: (node?: Element | null) => void;
 }) {
-
   return (
     <section
       id="accueil"
       className="min-h-screen flex items-center relative overflow-hidden text-[hsl(var(--foreground))] py-4 sm:py-6 md:py-8"
       ref={sectionRef}
     >
-      {/* Background Image with Semi-Transparent Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/image/background3.jpeg"
@@ -36,7 +34,7 @@ export default function Accueil({
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[hsl(var(--background))]/100 backdrop-blur-lg" />
+        <div className="absolute inset-0 bg-[hsl(var(--background))]/100 backdrop-blur-sm" />
       </div>
 
       {/* Gradient Backgrounds */}
@@ -46,14 +44,12 @@ export default function Accueil({
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-112 md:h-112 bg-[hsl(var(--primary))]/3 rounded-full blur-4xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Floating Elements */}
       <FloatingElements />
-
+      
       {/* Main Container - Layout adaptatif pour mobile */}
       <div className="relative z-10 w-full h-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
         {/* Layout mobile-first : colonne unique sur petits écrans, grid sur grands écrans */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-center justify-center min-h-[calc(100vh-2rem)] sm:min-h-[calc(100vh-3rem)] md:min-h-[calc(100vh-4rem)]">
-          
           {/* Section Image - Première sur mobile */}
           <div className="order-1 lg:order-2 flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 w-full">
             <div className="flex-1 flex items-center justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full">
@@ -92,49 +88,13 @@ export default function Accueil({
                 </div>
               </motion.div>
 
-              {/* Main Title */}
-              <motion.h1
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-black tracking-tight mb-4 sm:mb-5 md:mb-6 text-center lg:text-left"
-                variants={titleVariants}
-              >
-                <TypewriterText
-                  text="Je suis RAKOTONANDRIANINA Dimithry Marius"
-                  delay={150}
-                  className="text-black"
-                />
-              </motion.h1>
+              <NameStyled/>
 
               {/* Description avec animation de dégradé */}
               <motion.div
                 className="relative rounded-xl p-4 sm:p-5 md:p-6 backdrop-blur-sm space-y-3 sm:space-y-4 w-full overflow-hidden"
                 variants={descriptionVariants}
               >
-                {/* Arrière-plan animé avec dégradé */}
-                <motion.div
-                  className="absolute inset-0 rounded-xl"
-                  style={{
-                    background: `
-                      linear-gradient(
-                        45deg, 
-                        hsl(var(--primary) / 0.1), 
-                        hsl(var(--primary) / 0.05), 
-                        hsl(var(--primary) / 0.15),
-                        hsl(var(--primary) / 0.08),
-                        hsl(var(--primary) / 0.12)
-                      )
-                    `,
-                    backgroundSize: '400% 400%',
-                  }}
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{
-                    duration: 6,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                />
-                
                 {/* Bordure animée */}
                 <motion.div
                   className="absolute inset-0 rounded-xl border-2"
@@ -149,13 +109,13 @@ export default function Accueil({
                         hsl(var(--primary) / 0.3)
                       ) 1
                     `,
-                    backgroundSize: '400% 400%',
+                    backgroundSize: "400% 400%",
                   }}
                   animate={{
                     filter: [
-                      'hue-rotate(0deg)',
-                      'hue-rotate(20deg)',
-                      'hue-rotate(0deg)',
+                      "hue-rotate(0deg)",
+                      "hue-rotate(20deg)",
+                      "hue-rotate(0deg)",
                     ],
                   }}
                   transition={{
@@ -164,35 +124,8 @@ export default function Accueil({
                     repeat: Infinity,
                   }}
                 />
-
-                {/* Contenu texte */}
-                <div className="relative z-10">
-                  <motion.p
-                    className="text-sm sm:text-base md:text-lg opacity-80 leading-relaxed text-[hsl(var(--foreground))] mb-3 sm:mb-4"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 }}
-                  >
-                    Développeur passionné spécialisé dans la création
-                    d'applications web modernes et performantes. J'aide les
-                    entreprises à transformer leurs idées en solutions digitales
-                    innovantes. Grâce à une approche centrée sur la structuration
-                    des données et l'optimisation des flux d'information, je
-                    conçois des solutions fiables, évolutives et parfaitement
-                    adaptées aux enjeux métiers.
-                  </motion.p>
-
-                  <motion.p
-                    className="text-sm sm:text-base md:text-lg opacity-80 leading-relaxed text-[hsl(var(--foreground))]"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.9 }}
-                  >
-                    Mon approche combine créativité et expertise technique pour
-                    livrer des solutions sur mesure qui répondent aux besoins
-                    spécifiques de chaque client. De la conception à la mise en
-                    production, je vous accompagne dans tous vos projets web.
-                  </motion.p>
+                <div className="">
+                  <DescriptionHome/>
                 </div>
               </motion.div>
             </motion.div>

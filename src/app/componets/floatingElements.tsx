@@ -53,9 +53,8 @@ export default function FloatingElements() {
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
       {particles}
 
-      {/* Formes statiques supplémentaires */}
       <motion.div
-        className="absolute top-16 right-16 w-16 h-16 border-2 border-[hsl(var(--primary))]/20 rounded-lg"
+        className="absolute top-16 right-16 w-16 h-16 border-2 border-[hsl(var(--primary))]/30 rounded-lg"
         animate={{
           rotate: [0, 360],
         }}

@@ -59,13 +59,13 @@ export default function Navbar() {
     if (href.startsWith("#")) {
       const target = href.replace("#", "");
       return activeSection === target
-        ? "text-[hsl(var(--primary))] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[hsl(var(--primary))] after:to-[hsl(var(--primary-foreground))] after:rounded-full font-medium bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-foreground))] bg-clip-text text-transparent"
-        : "text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:text-[hsl(var(--primary))] transition-all duration-300 ease-in-out relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] after:rounded-full after:transition-all after:duration-300 hover:after:w-full";
+        ? "text-[hsl(200,90%,50%)] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[hsl(220,90%,40%)] after:via-[hsl(200,90%,50%)] after:to-[hsl(180,90%,60%)] after:rounded-full font-medium bg-gradient-to-r from-[hsl(220,90%,40%)] via-[hsl(200,90%,50%)] to-[hsl(180,90%,60%)] bg-clip-text light:text-[hsl(200,90%,45%)] dark:text-transparent text-shadow-sm"
+        : "text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:text-[hsl(200,90%,50%)] hover:bg-gradient-to-r hover:from-[hsl(220,90%,50%)] hover:to-[hsl(180,90%,60%)] hover:bg-clip-text hover:text-transparent transition-all duration-300 ease-in-out relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[hsl(220,90%,50%)] after:to-[hsl(180,90%,60%)] after:rounded-full after:transition-all after:duration-300 hover:after:w-full";
     }
 
     return pathname === href
-      ? "text-[hsl(var(--primary))] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[hsl(var(--primary))] after:to-[hsl(var(--primary-foreground))] after:rounded-full font-medium bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-foreground))] bg-clip-text text-transparent"
-      : "text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:text-[hsl(var(--primary))] transition-all duration-300 ease-in-out relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[hsl(var(--primary))] after:rounded-full after:transition-all after:duration-300 hover:after:w-full";
+      ? "text-[hsl(200,90%,50%)] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[hsl(220,90%,40%)] after:via-[hsl(200,90%,50%)] after:to-[hsl(180,90%,60%)] after:rounded-full font-medium bg-gradient-to-r from-[hsl(220,90%,40%)] via-[hsl(200,90%,50%)] to-[hsl(180,90%,60%)] bg-clip-text light:text-[hsl(200,90%,45%)] dark:text-transparent text-shadow-sm"
+      : "text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:text-[hsl(200,90%,50%)] hover:bg-gradient-to-r hover:from-[hsl(220,90%,50%)] hover:to-[hsl(180,90%,60%)] hover:bg-clip-text hover:text-transparent transition-all duration-300 ease-in-out relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[hsl(220,90%,50%)] after:to-[hsl(180,90%,60%)] after:rounded-full after:transition-all after:duration-300 hover:after:w-full";
   };
 
   const handleLinkClick = () => {
@@ -116,8 +116,13 @@ export default function Navbar() {
           <div className="flex items-center space-x-2">
             <div className="hidden lg:flex items-center space-x-8">
               <ul
-                className="flex items-center space-x-8 font-sans text-md font-medium tracking-wide"
-                style={{ fontFamily: "'Poppins', sans-serif, Arial, Helvetica" }}
+                className="flex items-center space-x-8"
+                style={{
+                  fontFamily: "'Poppins', sans-serif, Arial, Helvetica",
+                  fontWeight: "300",
+                  letterSpacing: "0.02em",
+                  lineHeight: "1.8",
+                }}
               >
                 {[
                   { href: "#accueil", label: "Accueil" },
@@ -226,7 +231,9 @@ export default function Navbar() {
                 </div>
                 <ul
                   className="space-y-6 font-sans text-lg font-medium tracking-wide mt-4"
-                  style={{ fontFamily: "'Poppins', sans-serif, Arial, Helvetica" }}
+                  style={{
+                    fontFamily: "'Poppins', sans-serif, Arial, Helvetica",
+                  }}
                 >
                   {[
                     { href: "#accueil", label: "Accueil" },

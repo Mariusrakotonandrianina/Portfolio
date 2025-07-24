@@ -8,7 +8,7 @@ import { AnimatedThemeToggle } from "./AnimatedThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { menuVariants } from "../variants/variants";
 
-const SECTIONS = ["accueil", "abouts", "projects", "skills", "contacts"];
+const SECTIONS = ["accueil", "experiences", "projects", "skills", "contacts"];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -125,9 +125,9 @@ export default function Navbar() {
                 }}
               >
                 {[
-                  { href: "#accueil", label: "Accueil" },
-                  { href: "#abouts", label: "À propos" },
+                  { href: "#accueil", label: "À propos" },
                   { href: "#skills", label: "Compétences" },
+                  { href: "#experiences", label: "Expérience" },
                   { href: "#projects", label: "Projets" },
                   { href: "#contacts", label: "Contacts" },
                 ].map((item, index) => (
@@ -236,9 +236,9 @@ export default function Navbar() {
                   }}
                 >
                   {[
-                    { href: "#accueil", label: "Accueil" },
-                    { href: "#abouts", label: "À propos" },
+                    { href: "#accueil", label: "À propos" },
                     { href: "#skills", label: "Compétences" },
+                    { href: "#experiences", label: "Exprérience" },
                     { href: "#projects", label: "Projets" },
                     { href: "#contacts", label: "Contacts" },
                   ].map((item, index) => (

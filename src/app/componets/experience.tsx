@@ -1,14 +1,15 @@
 import React from 'react';
-import NameStyled from './namestyled';
 
-export default function Abouts({ sectionRef }: { sectionRef: (node?: Element | null) => void }) {
+export default function Experiences({ sectionRef }: { sectionRef: (node?: Element | null) => void }) {
     return (
         <section 
-            id="abouts"
+            id="experiences"
             ref={sectionRef}
             className="min-h-screen flex items-center bg-background text-foreground"
         >
-            <NameStyled />
+            <p>
+                hhhhddhdhdhdhdhdhdhdhdhd
+            </p>
         </section>
     );
 }

@@ -50,24 +50,26 @@ const skillsData = [
       { name: "Angular", src: "/logo/Angular.jpeg" },
       { name: "Framer Motion", src: "/logo/Framer motion.jpeg" }
     ],
-    color: "from-blue-500/20 to-cyan-500/20",
-    borderColor: "border-blue-500/30"
+    color: "from-blue-500/10 to-cyan-500/10",
+    borderColor: "border-blue-500/20",
+    titleGradient: "from-blue-400 via-blue-600 to-cyan-500"
   },
   {
     category: "Backend & ERP",
     icon: <BackendIcon />,
     skills: [
-      { name: "Node.js", src: "/logo/Node_js.jpeg" },
-      { name: "Express.js", src: "/logo/Express_js.jpeg" },
+      { name: "Node.js", src: "/logo/Node.jpeg"},
+      { name: "Express.js", src: "/logo/Express.jpeg" },
       { name: "Python", src: "/logo/python.jpeg" },
       { name: "Java", src: "/logo/java.jpeg" },
       { name: "Spring boot", src: "/logo/Spring-Boot.jpeg" },
       { name: "FastAPI", src: "/logo/Fast API.jpeg" },
-      { name: "REST APIs", src: "/logo/Rest API.jpeg" }, ///bola tsy misy
+      { name: "REST APIs", src: "/logo/restAPI.jpeg" },
       { name: "ERP odoo", src: "/logo/Odoo.jpeg" }
     ],
-    color: "from-green-500/20 to-emerald-500/20",
-    borderColor: "border-green-500/30"
+    color: "from-green-500/10 to-emerald-500/10",
+    borderColor: "border-green-500/20",
+    titleGradient: "from-green-400 via-green-600 to-emerald-500"
   },
   {
     category: "Base de données",
@@ -78,8 +80,9 @@ const skillsData = [
       { name: "MySQL", src: "/logo/MySQL.jpeg" },
       { name: "Oracle", src: "/logo/Oracle.jpeg" },
     ],
-    color: "from-purple-500/20 to-violet-500/20",
-    borderColor: "border-purple-500/30"
+    color: "from-purple-500/10 to-violet-500/10",
+    borderColor: "border-purple-500/20",
+    titleGradient: "from-purple-400 via-purple-600 to-violet-500"
   },
   {
     category: "CI/CD & Version",
@@ -88,26 +91,27 @@ const skillsData = [
       { name: "Git", src: "/logo/Git.jpeg" },
       { name: "GitHub", src: "/logo/Github.jpeg" },
       { name: "GitLab CI", src: "/logo/Gitlab.jpeg" },
-      { name: "Vercel", src: "/logo/Vercel.jpeg" }, //Bola tsy misy
+      { name: "Vercel", src: "/logo/Vercel.jpeg" },
       { name: "OVH cloud", src: "/logo/OVH.jpeg" },
       { name: "NGINX", src: "/logo/NGINX.jpeg" }
     ],
-    color: "from-orange-500/20 to-red-500/20",
-    borderColor: "border-orange-500/30"
+    color: "from-green-500/10 to-emerald-500/10",
+    borderColor: "border-green-500/20",
+    titleGradient: "from-green-400 via-green-600 to-emerald-500"
   },
   {
     category: "Outils de développement",
     icon: <ToolsIcon />,
     skills: [
-      { name: "VS Code", level: 95 },
-      { name: "Postman", level: 85 },
-      { name: "Pycharm", level: 85 },
-      { name: "IntelliJ IDEA", level: 85 }
-    ],
-    color: "from-pink-500/20 to-rose-500/20",
-    borderColor: "border-pink-500/30"
+      { name: "VS Code", src: "/logo/visual-studio.jpeg" },
+      { name: "Postman", src: "/logo/Postman.jpeg" },
+      { name: "Pycharm", src: "/logo/Pycharm.jpeg" },
+      { name: "IntelliJ IDEA", src: "/logo/IntelliJ-IDEA.jpeg" }
+    ],    
+    color: "from-blue-500/10 to-cyan-500/10",
+    borderColor: "border-blue-500/20",
+    titleGradient: "from-blue-400 via-blue-600 to-cyan-500"
   }
-
 ];
 
 // Import des variantes depuis le fichier dédié
@@ -117,7 +121,6 @@ import {
   cardHeaderVariants,
   cardContentVariants,
   cardIconVariants,
-  progressBarVariants,
   cardListItemVariants,
   sectionTitleVariants,
   titleUnderlineVariants
@@ -131,7 +134,7 @@ export default function Skills({
   return (
     <section
       id="skills"
-      className="min-h-screen flex items-center relative overflow-hidden text-[hsl(var(--foreground))] py-4 sm:py-6 md:py-8 lg:pt-24"
+      className="min-h-screen flex items-center relative overflow-hidden text-[hsl(var(--foreground))] py-2 sm:py-3 md:py-4 lg:pt-12"
       ref={sectionRef}
     >
       {/* Background */}
@@ -155,12 +158,13 @@ export default function Skills({
 
       <FloatingElements />
 
-      <div className="relative z-10 w-full mx-auto px-6 sm:px-8 md:px-10 lg:px-24 py-8">
+      <div className="relative z-10 w-full px-8 sm:px-12 md:px-4">
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={cardContainerVariants}
           viewport={{ once: true, amount: 0.1 }}
+          transition={{ staggerChildren: 0.05 }}
           className="max-w-7xl mx-auto"
         >
           {/* Titre de la section */}
@@ -182,8 +186,8 @@ export default function Skills({
             </p>
           </motion.div>
 
-          {/* Grille des compétences */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+          {/* Grille des compétences - Centrage avec flexbox wrap */}
+          <div className="w-full flex flex-wrap justify-center gap-3 lg:gap-8">
             {skillsData.map((category, index) => (
               <motion.div
                 key={category.category}
@@ -191,12 +195,16 @@ export default function Skills({
                 whileInView="visible"
                 whileHover="hover"
                 variants={cardHoverVariants}
-                className="group relative"
+                className="group relative w-full max-w-sm flex-shrink-0"
+                style={{ 
+                  flexBasis: 'calc(33.333% - 2rem)',
+                  minWidth: '400px'
+                }}
               >
                 <motion.div
-                  className={`relative h-full p-6 lg:p-8 rounded-2xl backdrop-blur-sm bg-gradient-to-br ${category.color} border ${category.borderColor} transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10`}
+                  className={`relative h-full p-4 lg:p-6 rounded-2xl backdrop-blur-md bg-gradient-to-br ${category.color} border ${category.borderColor} transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30`}
                   whileHover={{
-                    borderColor: "hsl(var(--primary))",
+                    border: "hsl(var(--primary))",
                     transition: { duration: 0.3 }
                   }}
                 >
@@ -213,36 +221,55 @@ export default function Skills({
                     className="relative z-10"
                     variants={cardHeaderVariants}
                   >
-                    <div className="flex items-center gap-4 mb-6">
+                    <div className="flex items-center gap-3 mb-6">
                       <motion.div 
-                        className="p-3 rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] group-hover:scale-110 transition-transform duration-300"
+                        className="p-2 rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] group-hover:scale-110 transition-transform duration-300"
                         variants={cardIconVariants}
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
                       >
                         {category.icon}
                       </motion.div>
-                      <h3 className="text-xl lg:text-2xl font-bold text-[hsl(var(--foreground))]">
+                      <h3 className={`text-lg lg:text-xl font-bold bg-gradient-to-r ${category.titleGradient} bg-clip-text text-transparent`}>
                         {category.category}
                       </h3>
                     </div>
 
-                    {/* Liste des compétences */}
+                    {/* Liste des compétences - 2 colonnes avec centrage automatique pour l'élément impair */}
                     <motion.div 
-                      className="space-y-4"
+                      className="grid grid-cols-2 gap-2 justify-items-center"
                       variants={cardContentVariants}
                     >
                       {category.skills.map((skill, skillIndex) => (
                         <motion.div 
                           key={skill.name} 
-                          className="space-y-2"
+                          className="flex items-center gap-1.5 p-1.5 rounded-lg border border-[hsl(var(--border))]/30 backdrop-blur-sm bg-[hsl(var(--background))]/20 hover:bg-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-200 w-full min-w-0 max-w-full"
                           variants={cardListItemVariants}
+                          whileHover={{ x: 2, scale: 1.02 }}
+                          style={{
+                            // Si c'est le dernier élément et qu'il est impair, le centrer sur les 2 colonnes
+                            gridColumn: category.skills.length % 2 !== 0 && skillIndex === category.skills.length - 1 
+                              ? '1 / -1' // Prend toute la largeur pour le centrage
+                              : 'auto'
+                          }}
                         >
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm lg:text-base font-medium text-[hsl(var(--foreground))]">
-                              {skill.name}
-                            </span>
-                          </div>
+                          {/* Image de la technologie */}
+                          {skill.src && (
+                            <div className="flex-shrink-0 w-12 h-12 relative">
+                              <Image
+                                src={skill.src}
+                                alt={skill.name}
+                                fill
+                                className="object-contain rounded"
+                                sizes="36px"
+                              />
+                            </div>
+                          )}
+                          
+                          {/* Nom de la technologie */}
+                          <span className="text-xs lg:text-sm font-medium text-[hsl(var(--foreground))] truncate flex-1 leading-tight">
+                            {skill.name}
+                          </span>
                         </motion.div>
                       ))}
                     </motion.div>

@@ -8,7 +8,7 @@ import { AnimatedThemeToggle } from "./AnimatedThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { menuVariants } from "../variants/variants";
 
-const SECTIONS = ["accueil", "experiences", "projects", "skills", "contacts"];
+const SECTIONS = ["accueil", "skills", "experiences", "projects", "contacts"];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -52,6 +52,8 @@ const skillsData = [
     ],
     color: "from-blue-500/10 to-cyan-500/10",
     borderColor: "border-blue-500/20",
+    borderColorInitial: "rgba(59, 130, 246, 0.2)",
+    borderColorHover: "rgb(96, 165, 250)",
     titleGradient: "from-blue-400 via-blue-600 to-cyan-500"
   },
   {
@@ -69,6 +71,8 @@ const skillsData = [
     ],
     color: "from-green-500/10 to-emerald-500/10",
     borderColor: "border-green-500/20",
+    borderColorInitial: "rgba(34, 197, 94, 0.2)",
+    borderColorHover: "rgb(16, 185, 129)",
     titleGradient: "from-green-400 via-green-600 to-emerald-500"
   },
   {
@@ -82,6 +86,8 @@ const skillsData = [
     ],
     color: "from-purple-500/10 to-violet-500/10",
     borderColor: "border-purple-500/20",
+    borderColorInitial: "rgba(168, 85, 247, 0.2)",
+    borderColorHover: "rgb(168, 85, 247)",
     titleGradient: "from-purple-400 via-purple-600 to-violet-500"
   },
   {
@@ -97,6 +103,8 @@ const skillsData = [
     ],
     color: "from-green-500/10 to-emerald-500/10",
     borderColor: "border-green-500/20",
+    borderColorInitial: "rgba(34, 197, 94, 0.2)",
+    borderColorHover: "rgb(16, 185, 129)",
     titleGradient: "from-green-400 via-green-600 to-emerald-500"
   },
   {
@@ -110,6 +118,8 @@ const skillsData = [
     ],    
     color: "from-blue-500/10 to-cyan-500/10",
     borderColor: "border-blue-500/20",
+    borderColorInitial: "rgba(59, 130, 246, 0.2)",
+    borderColorHover: "rgb(96, 165, 250)",
     titleGradient: "from-blue-400 via-blue-600 to-cyan-500"
   }
 ];
@@ -202,9 +212,14 @@ export default function Skills({
                 }}
               >
                 <motion.div
-                  className={`relative h-full p-4 lg:p-6 rounded-2xl backdrop-blur-md bg-gradient-to-br ${category.color} border ${category.borderColor} transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30`}
+                  className={`relative h-full p-4 lg:p-6 rounded-2xl backdrop-blur-md bg-gradient-to-br ${category.color} transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30`}
+                  style={{
+                    borderWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: category.borderColorInitial
+                  }}
                   whileHover={{
-                    border: "hsl(var(--primary))",
+                    borderColor: category.borderColorHover,
                     transition: { duration: 0.3 }
                   }}
                 >
@@ -212,7 +227,7 @@ export default function Skills({
                   <motion.div
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
-                      background: `linear-gradient(45deg, transparent 30%, hsl(var(--primary) / 0.1) 50%, transparent 70%)`
+                      background: `linear-gradient(45deg, transparent 30%, rgba(96, 165, 250, 0.1) 50%, transparent 70%)`
                     }}
                   />
 
@@ -243,7 +258,7 @@ export default function Skills({
                       {category.skills.map((skill, skillIndex) => (
                         <motion.div 
                           key={skill.name} 
-                          className="flex items-center gap-1.5 p-1.5 rounded-lg border border-[hsl(var(--border))]/30 backdrop-blur-sm bg-[hsl(var(--background))]/20 hover:bg-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-200 w-full min-w-0 max-w-full"
+                          className="flex items-center gap-1 p-1 rounded-lg border border-[hsl(var(--border))]/30 backdrop-blur-sm bg-[hsl(var(--background))]/20 hover:bg-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-200 w-full min-w-0 max-w-full"
                           variants={cardListItemVariants}
                           whileHover={{ x: 2, scale: 1.02 }}
                           style={{

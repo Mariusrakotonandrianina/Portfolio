@@ -238,7 +238,7 @@ export default function Navbar() {
                   {[
                     { href: "#accueil", label: "À propos" },
                     { href: "#skills", label: "Compétences" },
-                    { href: "#experiences", label: "Exprérience" },
+                    { href: "#experiences", label: "Expérience" },
                     { href: "#projects", label: "Projets" },
                     { href: "#contacts", label: "Contacts" },
                   ].map((item, index) => (
@@ -250,6 +250,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={item.href}
+                        
                         className={`${isActive(
                           item.href
                         )} block px-4 py-3 rounded-lg transition-all duration-300 hover:bg-[hsl(var(--primary))]/10 focus:ring-2 focus:ring-[hsl(var(--primary))]/20 focus:outline-none`}

@@ -10,7 +10,8 @@ import { experienceData } from "../data/experienceData";
 import {
   cardContentVariants,
   sectionTitleVariants,
-  titleUnderlineVariants
+  titleUnderlineVariants,
+  cardHoverVariants
 } from "../variants/cardVariants";
 import FloatingElements from "./floatingElements";
 
@@ -32,20 +33,20 @@ export default function Experiences({
           src="/image/background3.jpeg"
           alt="Background Image"
           fill
-          className="object-cover object-center opacity-20"
+          className="object-cover object-center opacity-30"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--background))]/95 via-[hsl(var(--background))]/90 to-[hsl(var(--background))]/95 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-[hsl(var(--background))]/100 backdrop-blur-sm" />
       </div>
 
       {/* Éléments flottants de décoration - couleurs apaisantes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-gradient-to-r from-blue-400/6 to-slate-300/4 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-gradient-to-r from-[hsl(var(--primary))]/8 to-[hsl(var(--primary))]/4 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2],
+            opacity: [0.3, 0.6, 0.3],
             rotate: [0, 180, 360]
           }}
           transition={{
@@ -55,10 +56,10 @@ export default function Experiences({
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-l from-rose-200/4 to-blue-300/3 rounded-full blur-4xl"
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-l from-[hsl(var(--primary))]/6 to-[hsl(var(--primary))]/3 rounded-full blur-4xl"
           animate={{
             scale: [1.2, 1, 1.2],
-            opacity: [0.15, 0.3, 0.15],
+            opacity: [0.2, 0.4, 0.2],
             rotate: [360, 180, 0]
           }}
           transition={{
@@ -74,7 +75,7 @@ export default function Experiences({
 
       <div className="relative z-10 w-full mx-auto px-3 sm:px-6 md:px-8 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          {/* Titre de la section - Style amélioré */}
+          {/* Titre de la section - Style comme Skills */}
           <motion.div 
             className="text-center mb-12 lg:mb-16"
             variants={sectionTitleVariants}
@@ -83,21 +84,16 @@ export default function Experiences({
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div className="relative inline-block mb-6">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black bg-gradient-to-r from-blue-600 via-slate-600 to-blue-500 bg-clip-text text-transparent tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 bg-clip-text text-transparent">
                 Expériences
               </h2>
               <motion.div
-                className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-1.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"
+                className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-[hsl(var(--primary))] to-transparent"
                 variants={titleUnderlineVariants}
-              />
-              <motion.div
-                className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-transparent via-rose-300 to-transparent rounded-full"
-                variants={titleUnderlineVariants}
-                transition={{ delay: 0.2 }}
               />
             </motion.div>
             <motion.p 
-              className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto font-medium leading-relaxed"
+              className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
@@ -108,18 +104,18 @@ export default function Experiences({
 
           {/* Timeline des expériences */}
           <div className="relative">
-            {/* Ligne de timeline pour desktop - couleurs apaisantes */}
+            {/* Ligne de timeline pour desktop - couleurs cohérentes */}
             <motion.div 
-              className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-400/50 via-slate-300/30 to-blue-300/20 rounded-full h-full"
+              className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[hsl(var(--primary))]/50 via-[hsl(var(--primary))]/30 to-[hsl(var(--primary))]/20 rounded-full h-full"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
               style={{ originY: 0 }}
             />
             
-            {/* Ligne de timeline pour mobile - couleurs apaisantes */}
+            {/* Ligne de timeline pour mobile - couleurs cohérentes */}
             <motion.div 
-              className="block md:hidden absolute left-6 sm:left-8 w-0.5 bg-gradient-to-b from-blue-400/50 via-slate-300/30 to-blue-300/20 rounded-full h-full"
+              className="block md:hidden absolute left-6 sm:left-8 w-0.5 bg-gradient-to-b from-[hsl(var(--primary))]/50 via-[hsl(var(--primary))]/30 to-[hsl(var(--primary))]/20 rounded-full h-full"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
@@ -139,67 +135,37 @@ export default function Experiences({
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: index * 0.3 }}
                 >
-                  {/* Point sur la timeline - couleurs douces */}
+                  {/* Point sur la timeline - style amélioré */}
                   <motion.div 
-                    className="absolute left-4 sm:left-6 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-blue-500 to-slate-400 rounded-full border-3 sm:border-4 border-[hsl(var(--background))] z-10 shadow-lg"
+                    className="absolute left-4 sm:left-6 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 rounded-full border-3 sm:border-4 border-[hsl(var(--background))] z-10 shadow-lg"
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     transition={{ delay: index * 0.3 + 0.5, duration: 0.6, type: "spring" }}
                   >
                     <motion.div 
-                      className="absolute inset-0 bg-gradient-to-r from-blue-400 to-rose-200 rounded-full animate-ping opacity-30"
+                      className="absolute inset-0 bg-[hsl(var(--primary))] rounded-full animate-ping opacity-30"
                       animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     />
                   </motion.div>
 
-                  {/* Carte d'expérience - dimensions optimisées pour mobile */}
-                  <div className={`w-full md:w-5/12 ml-12 mr-2 sm:ml-16 sm:mr-4 md:mr-0 md:ml-0 ${
+                  {/* Carte d'expérience - style comme Skills avec marges améliorées */}
+                  <div className={`w-full md:w-5/12 ml-12 mr-6 sm:ml-16 sm:mr-8 md:mr-0 md:ml-0 ${
                     index % 2 === 1 ? 'md:mr-8' : 'md:ml-8'
                   }`}>
                     <motion.div
-                      className="relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 backdrop-blur-md overflow-hidden group"
-                      whileHover={{ 
-                        y: -8, 
-                        scale: 1.02,
-                        rotateY: index % 2 === 0 ? 2 : -2
-                      }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="group relative h-full p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-md bg-gradient-to-br from-[hsl(var(--primary))]/5 to-[hsl(var(--primary))]/2 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30 border border-[hsl(var(--primary))]/20"
+                      initial="rest"
+                      whileHover="hover"
+                      variants={cardHoverVariants}
                     >
-                      {/* Bordure animée avec couleurs douces */}
+                      {/* Effet de brillance au hover - comme Skills */}
                       <motion.div
-                        className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-blue-300/25"
-                        animate={{
-                          borderColor: [
-                            "rgb(147 197 253 / 0.25)",
-                            "rgb(148 163 184 / 0.35)", 
-                            "rgb(251 207 232 / 0.2)",
-                            "rgb(147 197 253 / 0.3)"
-                          ]
-                        }}
-                        transition={{
-                          duration: 8,
-                          ease: "easeInOut",
-                          repeat: Infinity,
+                        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{
+                          background: `linear-gradient(45deg, transparent 30%, hsl(var(--primary) / 0.1) 50%, transparent 70%)`
                         }}
                       />
-
-                      {/* Background gradient doux */}
-                      <motion.div 
-                        className={`absolute inset-0 bg-gradient-to-br ${experience.color} rounded-2xl sm:rounded-3xl opacity-25`}
-                        animate={{
-                          opacity: [0.25, 0.35, 0.25],
-                          scale: [1, 1.01, 1]
-                        }}
-                        transition={{
-                          duration: 6,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-
-                      {/* Overlay avec glassmorphism doux */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--background))]/85 via-[hsl(var(--background))]/70 to-[hsl(var(--background))]/85 rounded-2xl sm:rounded-3xl backdrop-blur-sm" />
 
                       {/* Contenu de la carte */}
                       <motion.div 
@@ -213,14 +179,14 @@ export default function Experiences({
                         >
                           <div className="flex items-center space-x-3 sm:space-x-4">
                             <motion.div 
-                              className="p-2.5 sm:p-4 bg-gradient-to-r from-blue-100/60 to-slate-100/40 rounded-xl sm:rounded-2xl text-blue-600 shadow-sm"
+                              className="p-2.5 sm:p-4 bg-[hsl(var(--primary))]/10 rounded-xl sm:rounded-2xl text-[hsl(var(--primary))] shadow-sm group-hover:scale-110 transition-transform duration-300"
                               whileHover={{ scale: 1.05, rotate: 3 }}
                               transition={{ duration: 0.3 }}
                             >
                               {experience.icon}
                             </motion.div>
                             <div>
-                              <h3 className="font-black text-lg sm:text-xl md:text-2xl text-[hsl(var(--foreground))] leading-tight tracking-tight">
+                              <h3 className="font-bold text-lg sm:text-xl md:text-2xl text-[hsl(var(--foreground))] leading-tight tracking-tight bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 bg-clip-text text-transparent">
                                 {experience.title}
                               </h3>
                             </div>
@@ -232,7 +198,7 @@ export default function Experiences({
                           className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4 text-[hsl(var(--muted-foreground))]"
                           variants={cardContentVariants}
                         >
-                          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
+                          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--primary))]" />
                           <span className="font-semibold text-base sm:text-lg">{experience.company}</span>
                         </motion.div>
 
@@ -241,17 +207,17 @@ export default function Experiences({
                           className="flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-5 text-[hsl(var(--muted-foreground))]"
                           variants={cardContentVariants}
                         >
-                          <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
+                          <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--primary))]" />
                           <span className="font-medium text-sm sm:text-base">{experience.period}</span>
                         </motion.div>
 
-                        {/* Technologie utilisée */}
+                        {/* Technologie utilisée - style amélioré */}
                         <motion.div 
                           className="mb-4 sm:mb-6"
                           variants={cardContentVariants}
                         >
                           <motion.div 
-                            className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2.5 bg-gradient-to-r from-blue-50/80 to-slate-50/60 text-blue-600 rounded-full text-xs sm:text-sm font-bold border border-blue-200/40 shadow-sm"
+                            className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2.5 bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-full text-xs sm:text-sm font-bold border border-[hsl(var(--primary))]/20 shadow-sm hover:bg-[hsl(var(--primary))]/15 transition-all duration-300"
                             whileHover={{ scale: 1.03 }}
                             transition={{ duration: 0.2 }}
                           >
@@ -268,7 +234,7 @@ export default function Experiences({
                           {experience.description}
                         </motion.p>
 
-                        {/* Compétences */}
+                        {/* Compétences - style comme Skills */}
                         <motion.div 
                           className="flex flex-wrap gap-1.5 sm:gap-2.5"
                           variants={cardContentVariants}
@@ -276,7 +242,7 @@ export default function Experiences({
                           {experience.skills.map((skill, skillIndex) => (
                             <motion.span
                               key={skillIndex}
-                              className="px-2.5 sm:px-4 py-1 sm:py-2 bg-gradient-to-r from-blue-50/60 to-rose-50/40 text-blue-600 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border border-blue-100/30 hover:bg-gradient-to-r hover:from-blue-100/60 hover:to-rose-100/50 transition-all duration-300 shadow-xs"
+                              className="px-2.5 sm:px-4 py-1 sm:py-2 bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold border border-[hsl(var(--primary))]/20 hover:bg-[hsl(var(--primary))]/15 hover:border-[hsl(var(--primary))]/30 transition-all duration-300 shadow-sm"
                               variants={skillTagVariants}
                               whileHover={{ scale: 1.02, y: -1 }}
                               transition={{ duration: 0.2 }}

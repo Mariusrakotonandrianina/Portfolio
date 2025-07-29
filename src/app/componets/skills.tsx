@@ -35,6 +35,17 @@ const ToolsIcon = () => (
   </svg>
 );
 
+// Nouvelle icône pour la modélisation, conception et gestion de projet
+const ModelingIcon = () => (
+  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/>
+    <path d="M7 7h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+    <path d="M7 11h10v2H7zm0 4h10v2H7z"/>
+    <circle cx="12" cy="18" r="1"/>
+    <path d="M9 17l1.5 1.5L12 17l1.5 1.5L15 17"/>
+  </svg>
+);
+
 const skillsData = [
   {
     category: "Frontend",
@@ -101,11 +112,11 @@ const skillsData = [
       { name: "OVH cloud", src: "/logo/OVH.jpeg" },
       { name: "NGINX", src: "/logo/NGINX.jpeg" }
     ],
-    color: "from-green-500/10 to-emerald-500/10",
-    borderColor: "border-green-500/20",
-    borderColorInitial: "rgba(34, 197, 94, 0.2)",
-    borderColorHover: "rgb(16, 185, 129)",
-    titleGradient: "from-green-400 via-green-600 to-emerald-500"
+    color: "from-purple-500/10 to-violet-500/10",
+    borderColor: "border-purple-500/20",
+    borderColorInitial: "rgba(168, 85, 247, 0.2)",
+    borderColorHover: "rgb(168, 85, 247)",
+    titleGradient: "from-purple-400 via-purple-600 to-violet-500"
   },
   {
     category: "Outils de développement",
@@ -121,7 +132,21 @@ const skillsData = [
     borderColorInitial: "rgba(59, 130, 246, 0.2)",
     borderColorHover: "rgb(96, 165, 250)",
     titleGradient: "from-blue-400 via-blue-600 to-cyan-500"
-  }
+  },
+  {
+    category: "Outil de modélisation, conception et de gestion de projet",
+    icon: <ModelingIcon />,
+    skills: [
+      { name: "Win'Design", src: "/logo/windesign.jpg" },
+      { name: "Visual Paradigm", src: "/logo/visualParadigm.jpg" },
+      { name: "GanttProject", src: "/logo/gantt.jpg" },
+    ],
+    color: "from-green-500/10 to-emerald-500/10",
+    borderColor: "border-green-500/20",
+    borderColorInitial: "rgba(34, 197, 94, 0.2)",
+    borderColorHover: "rgb(16, 185, 129)",
+    titleGradient: "from-green-400 via-green-600 to-emerald-500"
+  },
 ];
 
 // Import des variantes depuis le fichier dédié
@@ -168,7 +193,7 @@ export default function Skills({
 
       <FloatingElements />
 
-      <div className="relative z-10 w-full px-8 sm:px-12 md:px-4">
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -179,11 +204,11 @@ export default function Skills({
         >
           {/* Titre de la section */}
           <motion.div 
-            className="text-center mb-12 lg:mb-16"
+            className="text-center mb-8 lg:mb-12"
             variants={sectionTitleVariants}
           >
             <motion.div className="relative inline-block mb-4">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 bg-clip-text text-transparent">
                 Compétences
               </h2>
               <motion.div
@@ -191,13 +216,13 @@ export default function Skills({
                 variants={titleUnderlineVariants}
               />
             </motion.div>
-            <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto px-4">
               Découvrez mes compétences techniques acquises au fil de mes expériences et projets
             </p>
           </motion.div>
 
-          {/* Grille des compétences - Centrage avec flexbox wrap */}
-          <div className="w-full flex flex-wrap justify-center gap-3 lg:gap-8">
+          {/* Grille des compétences - Layout responsive optimisé */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 justify-items-center">
             {skillsData.map((category, index) => (
               <motion.div
                 key={category.category}
@@ -205,14 +230,10 @@ export default function Skills({
                 whileInView="visible"
                 whileHover="hover"
                 variants={cardHoverVariants}
-                className="group relative w-full max-w-sm flex-shrink-0"
-                style={{ 
-                  flexBasis: 'calc(33.333% - 2rem)',
-                  minWidth: '400px'
-                }}
+                className="group relative w-full"
               >
                 <motion.div
-                  className={`relative h-full p-4 lg:p-6 rounded-2xl backdrop-blur-md bg-gradient-to-br ${category.color} transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30`}
+                  className={`relative h-full p-3 sm:p-4 lg:p-6 rounded-2xl backdrop-blur-md bg-gradient-to-br ${category.color} transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30`}
                   style={{
                     borderWidth: '1px',
                     borderStyle: 'solid',
@@ -236,53 +257,47 @@ export default function Skills({
                     className="relative z-10"
                     variants={cardHeaderVariants}
                   >
-                    <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                       <motion.div 
-                        className="p-2 rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] group-hover:scale-110 transition-transform duration-300"
+                        className="p-1.5 sm:p-2 rounded-xl bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] group-hover:scale-110 transition-transform duration-300"
                         variants={cardIconVariants}
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
                       >
                         {category.icon}
                       </motion.div>
-                      <h3 className={`text-lg lg:text-xl font-bold bg-gradient-to-r ${category.titleGradient} bg-clip-text text-transparent`}>
+                      <h3 className={`text-base sm:text-lg lg:text-xl font-bold bg-gradient-to-r ${category.titleGradient} bg-clip-text text-transparent leading-tight`}>
                         {category.category}
                       </h3>
                     </div>
 
-                    {/* Liste des compétences - 2 colonnes avec centrage automatique pour l'élément impair */}
+                    {/* Liste des compétences - Layout optimisé pour mobile */}
                     <motion.div 
-                      className="grid grid-cols-2 gap-2 justify-items-center"
+                      className="grid grid-cols-2 gap-1.5 sm:gap-2"
                       variants={cardContentVariants}
                     >
                       {category.skills.map((skill, skillIndex) => (
                         <motion.div 
                           key={skill.name} 
-                          className="flex items-center gap-1 p-1 rounded-lg border border-[hsl(var(--border))]/30 backdrop-blur-sm bg-[hsl(var(--background))]/20 hover:bg-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-200 w-full min-w-0 max-w-full"
+                          className="flex items-center justify-center gap-1 sm:gap-1.5 p-2 sm:p-2.5 rounded-lg border border-[hsl(var(--border))]/30 backdrop-blur-sm bg-[hsl(var(--background))]/20 hover:bg-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-200 w-full min-w-0 h-16 sm:h-18 lg:h-20"
                           variants={cardListItemVariants}
                           whileHover={{ x: 2, scale: 1.02 }}
-                          style={{
-                            // Si c'est le dernier élément et qu'il est impair, le centrer sur les 2 colonnes
-                            gridColumn: category.skills.length % 2 !== 0 && skillIndex === category.skills.length - 1 
-                              ? '1 / -1' // Prend toute la largeur pour le centrage
-                              : 'auto'
-                          }}
                         >
                           {/* Image de la technologie */}
                           {skill.src && (
-                            <div className="flex-shrink-0 w-12 h-12 relative">
+                            <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 relative">
                               <Image
                                 src={skill.src}
                                 alt={skill.name}
                                 fill
                                 className="object-contain rounded"
-                                sizes="36px"
+                                sizes="(max-width: 640px) 24px, (max-width: 1024px) 32px, 40px"
                               />
                             </div>
                           )}
                           
                           {/* Nom de la technologie */}
-                          <span className="text-xs lg:text-sm font-medium text-[hsl(var(--foreground))] truncate flex-1 leading-tight">
+                          <span className="text-xs sm:text-sm font-medium text-[hsl(var(--foreground))] text-center leading-tight px-1 flex-1">
                             {skill.name}
                           </span>
                         </motion.div>

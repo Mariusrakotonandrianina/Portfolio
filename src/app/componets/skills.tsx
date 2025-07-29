@@ -153,7 +153,7 @@ export default function Skills({
           src="/image/background3.jpeg"
           alt="Background Image"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center opacity-30"
           priority
           sizes="100vw"
         />

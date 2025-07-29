@@ -25,39 +25,72 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // SOLUTION HYBRIDE pour gérer les sections longues
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.6,
-        rootMargin: "-80px 0px -80px 0px",
-      }
-    );
+    let ticking = false;
 
-    SECTIONS.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) {
-        observer.observe(section);
-      }
-    });
-
-    return () => {
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + 100; // Offset depuis le top
+      const viewportHeight = window.innerHeight;
+      const scrollCenter = scrollPosition + viewportHeight / 2;
+      
+      let bestMatch = "";
+      let bestScore = -1;
+      
       SECTIONS.forEach((id) => {
         const section = document.getElementById(id);
-        if (section) observer.unobserve(section);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const sectionTop = window.scrollY + rect.top;
+          const sectionBottom = sectionTop + rect.height;
+          
+          // Calculer quel pourcentage de la section est visible
+          const visibleTop = Math.max(sectionTop, scrollPosition);
+          const visibleBottom = Math.min(sectionBottom, scrollPosition + viewportHeight);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const visibilityRatio = visibleHeight / Math.min(rect.height, viewportHeight);
+          
+          // Bonus si le centre de l'écran est dans cette section
+          const centerBonus = (scrollCenter >= sectionTop && scrollCenter <= sectionBottom) ? 0.5 : 0;
+          
+          const score = visibilityRatio + centerBonus;
+          
+          if (score > bestScore && visibilityRatio > 0.1) { // Au moins 10% visible
+            bestScore = score;
+            bestMatch = id;
+          }
+        }
       });
+      
+      if (bestMatch) {
+        setActiveSection(bestMatch);
+      }
     };
-  }, []);
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    // Appel initial avec un délai pour laisser le temps au DOM de se charger
+    setTimeout(updateActiveSection, 100);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Tableau de dépendances vide pour éviter l'erreur
 
   const isActive = (href: string): string => {
     if (href.startsWith("#")) {
       const target = href.replace("#", "");
+
       return activeSection === target
         ? "text-[hsl(200,90%,50%)] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[hsl(220,90%,40%)] after:via-[hsl(200,90%,50%)] after:to-[hsl(180,90%,60%)] after:rounded-full font-medium bg-gradient-to-r from-[hsl(220,90%,40%)] via-[hsl(200,90%,50%)] to-[hsl(180,90%,60%)] bg-clip-text light:text-[hsl(200,90%,45%)] dark:text-transparent text-shadow-sm"
         : "text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:text-[hsl(200,90%,50%)] hover:bg-gradient-to-r hover:from-[hsl(220,90%,50%)] hover:to-[hsl(180,90%,60%)] hover:bg-clip-text hover:text-transparent transition-all duration-300 ease-in-out relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[hsl(220,90%,50%)] after:to-[hsl(180,90%,60%)] after:rounded-full after:transition-all after:duration-300 hover:after:w-full";
@@ -250,7 +283,6 @@ export default function Navbar() {
                     >
                       <Link
                         href={item.href}
-                        
                         className={`${isActive(
                           item.href
                         )} block px-4 py-3 rounded-lg transition-all duration-300 hover:bg-[hsl(var(--primary))]/10 focus:ring-2 focus:ring-[hsl(var(--primary))]/20 focus:outline-none`}

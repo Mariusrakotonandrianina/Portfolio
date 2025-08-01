@@ -77,7 +77,7 @@ const skillsData = [
       { name: "Java", src: "/logo/java.jpeg" },
       { name: "Spring boot", src: "/logo/Spring-Boot.jpeg" },
       { name: "FastAPI", src: "/logo/Fast API.jpeg" },
-      { name: "REST APIs", src: "/logo/restAPI.jpeg" },
+      { name: "REST APIs", src: "/logo/restApi.png" },
       { name: "ERP odoo", src: "/logo/Odoo.jpeg" }
     ],
     color: "from-green-500/10 to-emerald-500/10",
@@ -107,10 +107,10 @@ const skillsData = [
     skills: [
       { name: "Git", src: "/logo/Git.jpeg" },
       { name: "GitHub", src: "/logo/Github.jpeg" },
-      { name: "GitLab CI", src: "/logo/Gitlab.jpeg" },
+      { name: "GitLab CI", src: "/logo/gitlab.png" },
       { name: "Vercel", src: "/logo/Vercel.jpeg" },
       { name: "OVH cloud", src: "/logo/OVH.jpeg" },
-      { name: "NGINX", src: "/logo/NGINX.jpeg" }
+      { name: "NGINX", src: "/logo/nginx.png" }
     ],
     color: "from-purple-500/10 to-violet-500/10",
     borderColor: "border-purple-500/20",

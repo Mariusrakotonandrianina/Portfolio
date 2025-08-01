@@ -32,13 +32,13 @@ export const projectsData: ProjectType[] = [
   {
     id: 2,
     title: "Recherche Opérationnelle – Algorithme de Démoucron Min‑Max",
-    description: "Implémentation d’un algorithme de Démoucron Min‑Max pour l’ordonnancement de graphes et la résolution de problèmes d’optimisation en recherche opérationnelle. Visualisation des résultats et tests sur des jeux de données réels.",
+    description: "Implémentation d’un algorithme de Démoucron Min‑Max pour l’ordonnancement de tâche et la résolution de problèmes d’optimisation en recherche opérationnelle. Visualisation des résultats et tests sur des jeux de données réels.",
     image: "/image/demoucron.png",
     technologies: ["Next.js", "React Flow"],
     category: "Research / Algorithm",
     demoUrl: "https://recherche-operationnelle.vercel.app/",
     githubUrl: "https://github.com/Mariusrakotonandrianina/Recherche-op-rationnelle",
-    featured: false,
+    featured: true,
     completionDate: "Juin 2025",
     status: "completed"
   },
@@ -51,7 +51,7 @@ export const projectsData: ProjectType[] = [
     category: "Application Web",
     demoUrl: "",
     githubUrl: "https://github.com/Mariusrakotonandrianina/E-commerce",
-    featured: true,
+    featured: false,
     completionDate: "Décembre 2023",
     status: "completed"
   },
@@ -77,7 +77,7 @@ export const projectsData: ProjectType[] = [
     category: "Application web mobile",
     demoUrl: "",
     githubUrl: "https://github.com/Mariusrakotonandrianina/Hotel-mobile",
-    featured: true,
+    featured: false,
     completionDate: "Mai 2024",
     status: "in-progress"
   }

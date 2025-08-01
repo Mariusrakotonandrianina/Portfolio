@@ -91,7 +91,7 @@ const skillsData = [
     icon: <DatabaseIcon />,
     skills: [
       { name: "PostgreSQL", src: "/logo/postgresql.jpeg" },
-      { name: "MongoDB", src: "/logo/MongoDB.jpeg" },
+      { name: "MongoDB", src: "/logo/MongoDB.jpg" },
       { name: "MySQL", src: "/logo/MySQL.jpeg" },
       { name: "Oracle", src: "/logo/Oracle.jpeg" },
     ],

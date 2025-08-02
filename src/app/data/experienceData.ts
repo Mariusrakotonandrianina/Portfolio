@@ -18,7 +18,7 @@ export const experienceData: Experience[] = [
     id: 1,
     title: "Développement & personnalisation de modules e-learning",
     company: "SMART (Spike Malagasy for Research of Technology)",
-    period: "Septembre 2024 &ndash Décembre 2024",
+    period: "Septembre 2024 - Décembre 2024",
     technology: "Odoo 16",
     description:
       "Personnalisation et développement de modules e-learning adaptés aux besoins pédagogiques.",
@@ -30,7 +30,7 @@ export const experienceData: Experience[] = [
     id: 2,
     title: "Développement d'un site e-commerce",
     company: "24 Invits",
-    period: "Août 2023 &ndash Novembre 2023",
+    period: "Août 2023 - Novembre 2023",
     technology: "Stack MERN (MongoDB, Express, React, Node.js)",
     description:
       "Conception d'un site e-commerce complet avec gestion de produits, panier, paiement et tableau de bord.",

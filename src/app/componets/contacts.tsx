@@ -209,7 +209,7 @@ export default function Contacts({
                 Mes coordonnées
               </h3>
 
-              {contactData.map((contact, index) => (
+              {contactData.map((contact) => (
                 <motion.a
                   key={contact.type}
                   href={contact.link}

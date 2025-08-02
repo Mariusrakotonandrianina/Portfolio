@@ -217,7 +217,7 @@ export default function Skills({
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 justify-items-center">
-            {skillsData.map((category, index) => (
+            {skillsData.map((category) => (
               <motion.div
                 key={category.category}
                 initial="rest"
@@ -268,7 +268,7 @@ export default function Skills({
                       className="grid grid-cols-2 gap-1.5 sm:gap-2"
                       variants={cardContentVariants}
                     >
-                      {category.skills.map((skill, skillIndex) => (
+                      {category.skills.map((skill) => (
                         <motion.div
                           key={skill.name}
                           className="flex items-center justify-center gap-1 sm:gap-1.5 p-2 sm:p-2.5 rounded-lg border border-[hsl(var(--border))]/30 backdrop-blur-sm bg-[hsl(var(--background))]/20 hover:bg-[hsl(var(--primary))]/5 hover:border-[hsl(var(--primary))]/30 transition-all duration-200 w-full min-w-0 h-16 sm:h-18 lg:h-20"

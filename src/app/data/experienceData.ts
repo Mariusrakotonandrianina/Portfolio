@@ -1,4 +1,4 @@
-import { Code, Briefcase, LucideIcon } from "lucide-react";
+import { Code, Briefcase } from "lucide-react";
 import React from "react";
 
 export interface Experience {
@@ -18,22 +18,24 @@ export const experienceData: Experience[] = [
     id: 1,
     title: "Développement & personnalisation de modules e-learning",
     company: "SMART (Spike Malagasy for Research of Technology)",
-    period: "Septembre 2024 – Décembre 2024",
+    period: "Septembre 2024 &ndash Décembre 2024",
     technology: "Odoo 16",
-    description: "Personnalisation et développement de modules e-learning adaptés aux besoins pédagogiques.",
+    description:
+      "Personnalisation et développement de modules e-learning adaptés aux besoins pédagogiques.",
     skills: ["Odoo", "Python", "XML", "JavaScript", "PostgreSQL"],
     icon: React.createElement(Code, { className: "w-8 h-8" }),
-    color: "from-blue-500/20 to-purple-500/20"
+    color: "from-blue-500/20 to-purple-500/20",
   },
   {
     id: 2,
     title: "Développement d'un site e-commerce",
     company: "24 Invits",
-    period: "Août 2023 – Novembre 2023",
+    period: "Août 2023 &ndash Novembre 2023",
     technology: "Stack MERN (MongoDB, Express, React, Node.js)",
-    description: "Conception d'un site e-commerce complet avec gestion de produits, panier, paiement et tableau de bord.",
+    description:
+      "Conception d'un site e-commerce complet avec gestion de produits, panier, paiement et tableau de bord.",
     skills: ["MongoDB", "Express.js", "React", "Node.js", "JavaScript"],
     icon: React.createElement(Briefcase, { className: "w-8 h-8" }),
-    color: "from-green-500/20 to-blue-500/20"
-  }
+    color: "from-green-500/20 to-blue-500/20",
+  },
 ];

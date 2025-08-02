@@ -3,8 +3,6 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Navbar from "./componets/navbar";
 import Footer from "./componets/footer";
-import FloatingElements from "./componets/floatingElements";
-import Image from "next/image";
 
 export default function RootLayout({
   children,

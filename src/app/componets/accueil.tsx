@@ -46,7 +46,6 @@ export default function Accueil({
 
       <div className="relative z-10 w-full h-full mx-auto px-6 sm:px-8 md:px-10 lg:px-24 py-1 sm:py-6 md:py-2">
         <div className="flex flex-col min-h-[calc(100vh-2rem)] sm:min-h-[calc(100vh-3rem)] md:min-h-[calc(100vh-4rem)] items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:grid lg:grid-cols-2 lg:grid-rows-[auto_1fr_auto] lg:gap-y-0 lg:gap-x-6">
-          {/* Titre "Développeur Full Stack" - Marge top augmentée, marge bottom réduite */}
           <motion.div
             className="w-full text-center lg:col-span-2 lg:row-start-1 mt-12 sm:mt-16 md:mt-10 lg:mt-8 mb-1 sm:mb-1 md:mb-1 lg:mb-1"
             initial="hidden"
@@ -73,12 +72,9 @@ export default function Accueil({
             </motion.div>
           </motion.div>
 
-          {/* Image (haut sur mobile, droite sur desktop) - Déplacée vers le haut */}
           <div className="order-1 lg:order-2 lg:col-start-2 lg:row-start-2 flex items-start justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full lg:-mt-8">
             <ImageHome />
           </div>
-
-          {/* Groupement de NameStyled + DescriptionHome + Boutons (desktop) */}
           <motion.div
             className="order-2 lg:order-1 lg:col-start-1 lg:row-start-2 w-full flex flex-col items-center lg:items-start space-y-3 sm:space-y-4 md:space-y-5"
             variants={containerVariants}
@@ -126,14 +122,10 @@ export default function Accueil({
                 <DescriptionHome />
               </div>
             </motion.div>
-
-            {/* Boutons - Sous la description en desktop, séparés sur mobile */}
             <div className="hidden lg:flex justify-center lg:justify-end w-full mt-4">
               <ButtonHome />
             </div>
           </motion.div>
-
-          {/* Boutons - Visibles seulement sur mobile/tablette */}
           <div className="order-4 lg:hidden flex justify-center w-full mt-1 sm:mt-1 md:mt-2">
             <ButtonHome />
           </div>

@@ -6,21 +6,21 @@ export const cardContainerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      duration: 0.3
-    }
-  }
+      duration: 0.3,
+    },
+  },
 };
 
 export const cardHoverVariants: Variants = {
   rest: { scale: 1, y: 0 },
-  hover: { 
-    scale: 1.02, 
+  hover: {
+    scale: 1.02,
     y: -5,
-    transition: { 
+    transition: {
       duration: 0.3,
       type: "spring",
-      stiffness: 300
-    }
+      stiffness: 300,
+    },
   },
   visible: {
     opacity: 1,
@@ -28,9 +28,9 @@ export const cardHoverVariants: Variants = {
     transition: {
       duration: 0.5,
       type: "spring",
-      stiffness: 100
-    }
-  }
+      stiffness: 100,
+    },
+  },
 };
 
 export const formVariants: Variants = {
@@ -41,9 +41,9 @@ export const formVariants: Variants = {
     transition: {
       duration: 0.6,
       type: "spring",
-      stiffness: 100
-    }
-  }
+      stiffness: 100,
+    },
+  },
 };
 
 export const sectionTitleVariants: Variants = {
@@ -54,9 +54,9 @@ export const sectionTitleVariants: Variants = {
     transition: {
       duration: 0.6,
       type: "spring",
-      stiffness: 100
-    }
-  }
+      stiffness: 100,
+    },
+  },
 };
 
 export const titleUnderlineVariants: Variants = {
@@ -65,7 +65,7 @@ export const titleUnderlineVariants: Variants = {
     width: "100px",
     transition: {
       duration: 0.8,
-      delay: 0.2
-    }
-  }
+      delay: 0.2,
+    },
+  },
 };

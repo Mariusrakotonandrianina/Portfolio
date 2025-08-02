@@ -23,8 +23,8 @@ export default function DescriptionHome() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
-        Développeur passionné spécialisé dans la création d'applications web
-        modernes et performantes.
+        Développeur passionné spécialisé dans la création d&apos;applications
+        web modernes et performantes.
       </motion.span>
 
       <motion.span
@@ -32,8 +32,8 @@ export default function DescriptionHome() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
       >
-        J'aide les entreprises à transformer leurs idées en solutions digitales
-        innovantes.
+        J&apos;aide les entreprises à transformer leurs idées en solutions
+        digitales innovantes.
       </motion.span>
 
       <motion.span
@@ -42,8 +42,9 @@ export default function DescriptionHome() {
         transition={{ duration: 0.6, delay: 1.6 }}
       >
         Grâce à une approche centrée sur la structuration des données et
-        l'optimisation des flux d'information, je conçois des solutions fiables,
-        évolutives et parfaitement adaptées aux enjeux métiers.
+        l&apos;optimisation des flux d&apos;information, je conçois des
+        solutions fiables, évolutives et parfaitement adaptées aux enjeux
+        métiers.
       </motion.span>
     </motion.p>
   );

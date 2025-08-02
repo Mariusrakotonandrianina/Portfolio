@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export function AnimatedThemeToggle() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     return (
       <div className="p-2 rounded-md bg-[hsl(var(--accent))] border border-[hsl(var(--border))]">
         <div className="w-5 h-5 bg-[hsl(var(--muted))] rounded" />
       </div>
-    )
+    );
   }
 
-  const isDark = resolvedTheme === 'dark'
+  const isDark = resolvedTheme === "dark";
 
   return (
     <motion.button
       className="p-2 rounded-md bg-[hsl(var(--accent))] hover:bg-[hsl(var(--muted))] border border-[hsl(var(--border))] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 focus:ring-offset-[hsl(var(--background))]"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      aria-label={`Basculer vers le mode ${isDark ? 'clair' : 'sombre'}`}
+      aria-label={`Basculer vers le mode ${isDark ? "clair" : "sombre"}`}
     >
       <motion.div
         animate={{
@@ -36,7 +36,7 @@ export function AnimatedThemeToggle() {
         }}
         transition={{
           duration: 0.5,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
         className="text-[hsl(var(--foreground))] flex items-center justify-center"
       >
@@ -70,5 +70,5 @@ export function AnimatedThemeToggle() {
         )}
       </motion.div>
     </motion.button>
-  )
+  );
 }

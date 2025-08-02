@@ -10,7 +10,6 @@ export default function NameStyled() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Pour éviter les erreurs d'hydratation liées au thème
     setIsMounted(true);
   }, []);
 

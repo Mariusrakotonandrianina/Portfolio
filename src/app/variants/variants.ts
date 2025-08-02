@@ -59,7 +59,6 @@ export const wordVariants: Variants = {
   },
 };
 
-
 export const descriptionVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -142,13 +141,13 @@ export const letterVariants: Variants = {
 };
 
 export const menuVariants: Variants = {
-    closed: {
-      opacity: 0,
-      x: "100%",
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: { type: "spring", stiffness: 120, damping: 20 },
-    },
-  };
+  closed: {
+    opacity: 0,
+    x: "100%",
+  },
+  open: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 120, damping: 20 },
+  },
+};

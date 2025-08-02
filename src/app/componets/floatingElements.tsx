@@ -45,9 +45,9 @@ export default function FloatingElements() {
         />
       );
     });
-  }, []); // Ne recalculer qu’une seule fois
+  }, []);
 
-  if (!mounted) return null; // rien afficher tant qu'on est côté serveur
+  if (!mounted) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">

@@ -132,8 +132,8 @@ export const carouselVariants: Variants = {
   }),
 };
 export const modernButtonVariants: Variants = {
-  rest: { 
-    scale: 1, 
+  rest: {
+    scale: 1,
     rotate: 0,
     boxShadow: "0 4px 20px rgba(var(--primary-rgb), 0.2)",
   },
@@ -141,9 +141,9 @@ export const modernButtonVariants: Variants = {
     scale: 1.1,
     rotate: [0, -5, 5, 0],
     boxShadow: "0 8px 30px rgba(var(--primary-rgb), 0.4)",
-    transition: { 
+    transition: {
       duration: 0.3,
-      rotate: { duration: 0.6, ease: "easeInOut" }
+      rotate: { duration: 0.6, ease: "easeInOut" },
     },
   },
   tap: { scale: 0.95 },

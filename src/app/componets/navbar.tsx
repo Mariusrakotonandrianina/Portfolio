@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { AnimatedThemeToggle } from "./AnimatedThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
-import { menuVariants } from "../variants/variants";
 
 const SECTIONS = ["accueil", "skills", "experiences", "projects", "contacts"];
 
@@ -25,43 +24,59 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // SOLUTION HYBRIDE pour gérer les sections longues
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     let ticking = false;
 
     const updateActiveSection = () => {
-      const scrollPosition = window.scrollY + 100; // Offset depuis le top
+      const scrollPosition = window.scrollY + 100;
       const viewportHeight = window.innerHeight;
       const scrollCenter = scrollPosition + viewportHeight / 2;
-      
+
       let bestMatch = "";
       let bestScore = -1;
-      
+
       SECTIONS.forEach((id) => {
         const section = document.getElementById(id);
         if (section) {
           const rect = section.getBoundingClientRect();
           const sectionTop = window.scrollY + rect.top;
           const sectionBottom = sectionTop + rect.height;
-          
-          // Calculer quel pourcentage de la section est visible
+
           const visibleTop = Math.max(sectionTop, scrollPosition);
-          const visibleBottom = Math.min(sectionBottom, scrollPosition + viewportHeight);
+          const visibleBottom = Math.min(
+            sectionBottom,
+            scrollPosition + viewportHeight
+          );
           const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-          const visibilityRatio = visibleHeight / Math.min(rect.height, viewportHeight);
-          
-          // Bonus si le centre de l'écran est dans cette section
-          const centerBonus = (scrollCenter >= sectionTop && scrollCenter <= sectionBottom) ? 0.5 : 0;
-          
+          const visibilityRatio =
+            visibleHeight / Math.min(rect.height, viewportHeight);
+
+          const centerBonus =
+            scrollCenter >= sectionTop && scrollCenter <= sectionBottom
+              ? 0.5
+              : 0;
+
           const score = visibilityRatio + centerBonus;
-          
-          if (score > bestScore && visibilityRatio > 0.1) { // Au moins 10% visible
+
+          if (score > bestScore && visibilityRatio > 0.1) {
             bestScore = score;
             bestMatch = id;
           }
         }
       });
-      
+
       if (bestMatch) {
         setActiveSection(bestMatch);
       }
@@ -78,14 +93,12 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Appel initial avec un délai pour laisser le temps au DOM de se charger
     setTimeout(updateActiveSection, 100);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Tableau de dépendances vide pour éviter l'erreur
+  }, []);
 
   const isActive = (href: string): string => {
     if (href.startsWith("#")) {
@@ -105,10 +118,21 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen]);
+
   return (
     <motion.nav
       className={`w-full px-4 sm:px-6 lg:px-8 py-3 fixed top-0 z-50 transition-all duration-500 ease-in-out ${
-        scrolled
+        scrolled || isOpen
           ? "bg-[hsl(var(--card))]/95 dark:bg-[hsl(var(--dark-background))]/95 backdrop-blur-xl shadow-lg border-b border-[hsl(var(--border))]/20"
           : "bg-transparent"
       }`}
@@ -187,37 +211,50 @@ export default function Navbar() {
               </div>
             </div>
 
-            <button
-              className="lg:hidden p-1.5 rounded-lg text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:bg-[hsl(var(--primary))]/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]/20"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              <motion.div
-                animate={{ rotate: isOpen ? 90 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-6 h-6 flex items-center justify-center"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d={
-                      isOpen
-                        ? "M6 18L18 6M6 6l12 12"
-                        : "M4 6h16M4 12h16M4 18h16"
-                    }
-                  />
-                </svg>
-              </motion.div>
-            </button>
-            <div className="lg:hidden">
+            <div className="lg:hidden flex items-center space-x-2">
               <AnimatedThemeToggle aria-label="Toggle theme" />
+              <button
+                className="p-2 rounded-lg text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:bg-[hsl(var(--primary))]/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]/20 touch-manipulation"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+              >
+                <motion.div
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="w-6 h-6 flex items-center justify-center"
+                >
+                  {isOpen ? (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    </svg>
+                  )}
+                </motion.div>
+              </button>
             </div>
           </div>
         </div>
@@ -227,28 +264,47 @@ export default function Navbar() {
             <>
               <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="fixed inset-0 bg-black z-40 lg:hidden"
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
                 onClick={() => setIsOpen(false)}
                 aria-hidden="true"
               />
+
               <motion.div
-                variants={menuVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
-                className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-gradient-to-b from-[hsl(var(--card))] to-[hsl(var(--card))]/80 dark:from-[hsl(var(--dark-background))] dark:to-[hsl(var(--dark-background))]/80 border-l border-[hsl(var(--border))]/20 shadow-2xl z-50 p-6 backdrop-blur-xl lg:hidden"
+                initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut",
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                }}
+                className="fixed top-20 left-4 right-4 bg-white/95 dark:bg-gray-900/95 rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-xl z-50 max-h-[80vh] overflow-y-auto lg:hidden"
+                style={{
+                  maxWidth: "400px",
+                  margin: "0 auto",
+                  left: "50%",
+                  right: "auto",
+                  transform: "translateX(-50%)",
+                }}
               >
-                <div className="flex justify-end">
+                <div className="flex items-center justify-between p-4 border-b border-gray-200/20 dark:border-gray-700/20">
+                  <div className="items-center space-x-3">
+                    <span className="font-semibold text-gray-900 dark:text-gray-100">
+                      Navigation
+                    </span>
+                  </div>
                   <button
-                    className="p-2 rounded-lg text-[hsl(var(--foreground))] dark:text-[hsl(var(--dark-foreground))] hover:bg-[hsl(var(--primary))]/10 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]/20"
+                    className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]/20 transition-all duration-200"
                     onClick={() => setIsOpen(false)}
                     aria-label="Close menu"
                   >
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -262,38 +318,72 @@ export default function Navbar() {
                     </svg>
                   </button>
                 </div>
-                <ul
-                  className="space-y-6 font-sans text-lg font-medium tracking-wide mt-4"
-                  style={{
-                    fontFamily: "'Poppins', sans-serif, Arial, Helvetica",
-                  }}
-                >
-                  {[
-                    { href: "#accueil", label: "À propos" },
-                    { href: "#skills", label: "Compétences" },
-                    { href: "#experiences", label: "Expérience" },
-                    { href: "#projects", label: "Projets" },
-                    { href: "#contacts", label: "Contacts" },
-                  ].map((item, index) => (
-                    <motion.li
-                      key={item.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`${isActive(
-                          item.href
-                        )} block px-4 py-3 rounded-lg transition-all duration-300 hover:bg-[hsl(var(--primary))]/10 focus:ring-2 focus:ring-[hsl(var(--primary))]/20 focus:outline-none`}
-                        onClick={handleLinkClick}
-                        tabIndex={0}
+
+                <nav className="p-2">
+                  <ul className="space-y-1">
+                    {[
+                      { href: "#accueil", label: "À propos" },
+                      { href: "#skills", label: "Compétences" },
+                      { href: "#experiences", label: "Expérience" },
+                      { href: "#projects", label: "Projets" },
+                      { href: "#contacts", label: "Contacts" },
+                    ].map((item, index) => (
+                      <motion.li
+                        key={item.href}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: index * 0.05,
+                          duration: 0.3,
+                          ease: "easeOut",
+                        }}
                       >
-                        {item.label}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
+                        <Link
+                          href={item.href}
+                          className={`
+                            flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 group touch-manipulation
+                            ${
+                              activeSection === item.href.replace("#", "")
+                                ? "bg-gradient-to-r from-[hsl(var(--primary))]/15 to-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] border border-[hsl(var(--primary))]/30 shadow-sm"
+                                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-[hsl(var(--primary))]"
+                            }
+                          `}
+                          onClick={handleLinkClick}
+                          tabIndex={0}
+                        >
+                          <span
+                            className="font-medium text-base"
+                            style={{
+                              fontFamily:
+                                "'Poppins', sans-serif, Arial, Helvetica",
+                            }}
+                          >
+                            {item.label}
+                          </span>
+                          {activeSection === item.href.replace("#", "") && (
+                            <motion.div
+                              layoutId="mobile-active-indicator"
+                              className="w-2 h-2 rounded-full bg-[hsl(var(--primary))]"
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              }}
+                            />
+                          )}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </nav>
+
+                <div className="p-4 border-t border-gray-200/20 dark:border-gray-700/20">
+                  <div className="flex items-center justify-center">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      Appuyez sur Échap pour fermer
+                    </span>
+                  </div>
+                </div>
               </motion.div>
             </>
           )}

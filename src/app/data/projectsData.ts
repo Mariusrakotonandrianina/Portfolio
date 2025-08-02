@@ -1,4 +1,3 @@
-import { ExternalLink, Github, Calendar, Code2, Eye, Smartphone, Globe, BarChart3, Users, ShoppingCart, CheckSquare } from "lucide-react";
 
 export interface ProjectType {
   id: number;
@@ -18,11 +17,11 @@ export interface ProjectType {
 export const projectsData: ProjectType[] = [
   {
     id: 1,
-    title: "Développement et Personnalisation d’un Module E‑Learning Odoo 16",
-    description: "Projet consistant à développer et personnaliser un module e‑learning pour Odoo 16, intégrant la gestion des cours, des paiements et des certificats. Optimisation pour l’expérience utilisateur et compatibilité multi‑dispositifs.",
+    title: "Développement et Personnalisation d'un Module E-Learning Odoo 16",
+    description: "Projet consistant à développer et personnaliser un module e-learning pour Odoo 16, intégrant la gestion des cours, des paiements et des certificats. Optimisation pour l'expérience utilisateur et compatibilité multi-dispositifs.",
     image: "/image/spike.png",
     technologies: ["Odoo 16", "Python", "PostgreSQL", "XML", "JavaScript"],
-    category: "ERP / E‑Learning",
+    category: "ERP / E-Learning",
     demoUrl: "https://spike-business.com/slides/all",
     githubUrl: "",
     featured: true,
@@ -31,8 +30,8 @@ export const projectsData: ProjectType[] = [
   },
   {
     id: 2,
-    title: "Recherche Opérationnelle – Algorithme de Démoucron Min‑Max",
-    description: "Implémentation d’un algorithme de Démoucron Min‑Max pour l’ordonnancement de tâche et la résolution de problèmes d’optimisation en recherche opérationnelle. Visualisation des résultats et tests sur des jeux de données réels.",
+    title: "Recherche Opérationnelle - Algorithme de Démoucron Min-Max",
+    description: "Implémentation d'un algorithme de Démoucron Min-Max pour l'ordonnancement de tâche et la résolution de problèmes d'optimisation en recherche opérationnelle. Visualisation des résultats et tests sur des jeux de données réels.",
     image: "/image/demoucron.png",
     technologies: ["Next.js", "React Flow"],
     category: "Research / Algorithm",
@@ -44,8 +43,8 @@ export const projectsData: ProjectType[] = [
   },
   {
     id: 3,
-    title: "E‑Commerce – Vente de Produits",
-    description: "Création d’une application e‑commerce pour la vente de produits avec gestion du catalogue, panier, commandes et paiement sécurisé en ligne.",
+    title: "E-Commerce - Vente de Produits",
+    description: "Création d'une application e-commerce pour la vente de produits avec gestion du catalogue, panier, commandes et paiement sécurisé en ligne.",
     image: "/image/ecommerce.png",
     technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
     category: "Application Web",
@@ -58,7 +57,7 @@ export const projectsData: ProjectType[] = [
   {
     id: 4,
     title: "Plateforme de Covoiturage avec Réservation et Paiement",
-    description: "Application de covoiturage permettant aux utilisateurs de réserver des trajets et d’effectuer des paiements sécurisés via Stripe. Interface web et mobile optimisée.",
+    description: "Application de covoiturage permettant aux utilisateurs de réserver des trajets et d'effectuer des paiements sécurisés via Stripe. Interface web et mobile optimisée.",
     image: "/image/covoiturage.png",
     technologies: ["Next.js", "Node.js", "Express", "MongoDB", "Stripe API"],
     category: "Application Web",
@@ -70,8 +69,8 @@ export const projectsData: ProjectType[] = [
   },
   {
     id: 5,
-    title: "Système de Réservation d’Hôtel avec Paiement Stripe",
-    description: "Développement d'application web mobile d’un système de réservation d’hôtel avec calendrier interactif, gestion des chambres et paiements en ligne via Stripe.",
+    title: "Système de Réservation d'Hôtel avec Paiement Stripe",
+    description: "Développement d'application web mobile d'un système de réservation d'hôtel avec calendrier interactif, gestion des chambres et paiements en ligne via Stripe.",
     image: "/image/mobileReserv.jpeg",
     technologies: ["Réacte Native", "Next.js", "Tailwind CSS", "Expresse.js", "MongoDB", "Stripe API"],
     category: "Application web mobile",
@@ -83,7 +82,6 @@ export const projectsData: ProjectType[] = [
   }
 ];
 
-// Statistiques des projets (optionnel)
 export const projectStats = {
   total: projectsData.length,
   completed: projectsData.filter(p => p.status === 'completed').length,

@@ -8,11 +8,11 @@ interface TypewriterTextProps {
   showCursor?: boolean;
 }
 
-export default function TypewriterText({ 
-  text, 
-  delay = 0, 
+export default function TypewriterText({
+  text,
+  delay = 0,
   className = "",
-  showCursor = true 
+  showCursor = true,
 }: TypewriterTextProps) {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,7 +35,6 @@ export default function TypewriterText({
     <motion.span
       className={`relative inline-block ${className}`}
       style={{
-        // Style adaptatif avec intensité réduite
         textShadow: `
           0 0 5px hsl(var(--primary) / 0.4),
           0 0 10px hsl(var(--primary) / 0.2),

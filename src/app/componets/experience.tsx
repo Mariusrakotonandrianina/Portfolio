@@ -3,23 +3,24 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Calendar, Code, Users } from "lucide-react";
-import { enhancedCardVariants, skillTagVariants } from "../variants/experienceVariant";
+import {
+  enhancedCardVariants,
+  skillTagVariants,
+} from "../variants/experienceVariant";
 import { experienceData } from "../data/experienceData";
 
-// Import des variantes pour le titre (comme dans Skills)
 import {
   cardContentVariants,
   sectionTitleVariants,
   titleUnderlineVariants,
-  cardHoverVariants
+  cardHoverVariants,
 } from "../variants/cardVariants";
 import FloatingElements from "./floatingElements";
 
-
-export default function Experiences({ 
-  sectionRef, 
-}: { 
-  sectionRef: (node?: Element | null) => void 
+export default function Experiences({
+  sectionRef,
+}: {
+  sectionRef: (node?: Element | null) => void;
 }) {
   return (
     <section
@@ -27,7 +28,6 @@ export default function Experiences({
       ref={sectionRef}
       className="min-h-screen flex flex-col justify-center relative overflow-hidden text-[hsl(var(--foreground))] py-12 sm:py-16 md:py-20 lg:py-24"
     >
-      {/* Background avec même style que l'accueil */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/image/background3.jpeg"
@@ -40,33 +40,32 @@ export default function Experiences({
         <div className="absolute inset-0 bg-[hsl(var(--background))]/100 backdrop-blur-sm" />
       </div>
 
-      {/* Éléments flottants de décoration - couleurs apaisantes */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-gradient-to-r from-[hsl(var(--primary))]/8 to-[hsl(var(--primary))]/4 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
-            rotate: [0, 180, 360]
+            rotate: [0, 180, 360],
           }}
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-l from-[hsl(var(--primary))]/6 to-[hsl(var(--primary))]/3 rounded-full blur-4xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.2, 0.4, 0.2],
-            rotate: [360, 180, 0]
+            rotate: [360, 180, 0],
           }}
           transition={{
             duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 3
+            delay: 3,
           }}
         />
       </div>
@@ -75,8 +74,7 @@ export default function Experiences({
 
       <div className="relative z-10 w-full mx-auto px-3 sm:px-6 md:px-8 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          {/* Titre de la section - Style comme Skills */}
-          <motion.div 
+          <motion.div
             className="text-center mb-12 lg:mb-16"
             variants={sectionTitleVariants}
             initial="hidden"
@@ -92,29 +90,25 @@ export default function Experiences({
                 variants={titleUnderlineVariants}
               />
             </motion.div>
-            <motion.p 
+            <motion.p
               className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Découvrez mon parcours professionnel et les projets sur lesquels j'ai travaillé
+              Découvrez mon parcours professionnel et les projets sur lesquels
+              j&apos;ai travaillé
             </motion.p>
           </motion.div>
-
-          {/* Timeline des expériences */}
           <div className="relative">
-            {/* Ligne de timeline pour desktop - couleurs cohérentes */}
-            <motion.div 
+            <motion.div
               className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[hsl(var(--primary))]/50 via-[hsl(var(--primary))]/30 to-[hsl(var(--primary))]/20 rounded-full h-full"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
               style={{ originY: 0 }}
             />
-            
-            {/* Ligne de timeline pour mobile - couleurs cohérentes */}
-            <motion.div 
+            <motion.div
               className="block md:hidden absolute left-6 sm:left-8 w-0.5 bg-gradient-to-b from-[hsl(var(--primary))]/50 via-[hsl(var(--primary))]/30 to-[hsl(var(--primary))]/20 rounded-full h-full"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
@@ -127,7 +121,7 @@ export default function Experiences({
                 <motion.div
                   key={experience.id}
                   className={`relative flex flex-col md:flex-row items-start ${
-                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                    index % 2 === 1 ? "md:flex-row-reverse" : ""
                   }`}
                   variants={enhancedCardVariants}
                   initial="hidden"
@@ -135,50 +129,51 @@ export default function Experiences({
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: index * 0.3 }}
                 >
-                  {/* Point sur la timeline - style amélioré */}
-                  <motion.div 
+                  <motion.div
                     className="absolute left-4 sm:left-6 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 rounded-full border-3 sm:border-4 border-[hsl(var(--background))] z-10 shadow-lg"
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: index * 0.3 + 0.5, duration: 0.6, type: "spring" }}
+                    transition={{
+                      delay: index * 0.3 + 0.5,
+                      duration: 0.6,
+                      type: "spring",
+                    }}
                   >
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 bg-[hsl(var(--primary))] rounded-full animate-ping opacity-30"
                       animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     />
                   </motion.div>
 
-                  {/* Carte d'expérience - style comme Skills avec marges améliorées */}
-                  <div className={`w-full md:w-5/12 ml-12 mr-6 sm:ml-16 sm:mr-8 md:mr-0 md:ml-0 ${
-                    index % 2 === 1 ? 'md:mr-8' : 'md:ml-8'
-                  }`}>
+                  <div
+                    className={`w-full md:w-5/12 ml-12 mr-6 sm:ml-16 sm:mr-8 md:mr-0 md:ml-0 ${
+                      index % 2 === 1 ? "md:mr-8" : "md:ml-8"
+                    }`}
+                  >
                     <motion.div
                       className="group relative h-full p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-md bg-gradient-to-br from-[hsl(var(--primary))]/5 to-[hsl(var(--primary))]/2 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[hsl(var(--primary))]/10 bg-[hsl(var(--background))]/30 border border-[hsl(var(--primary))]/20"
                       initial="rest"
                       whileHover="hover"
                       variants={cardHoverVariants}
                     >
-                      {/* Effet de brillance au hover - comme Skills */}
                       <motion.div
                         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{
-                          background: `linear-gradient(45deg, transparent 30%, hsl(var(--primary) / 0.1) 50%, transparent 70%)`
+                          background: `linear-gradient(45deg, transparent 30%, hsl(var(--primary) / 0.1) 50%, transparent 70%)`,
                         }}
                       />
 
-                      {/* Contenu de la carte */}
-                      <motion.div 
+                      <motion.div
                         className="relative z-10"
                         variants={cardContentVariants}
                       >
-                        {/* En-tête avec icône et période */}
-                        <motion.div 
+                        <motion.div
                           className="flex items-start justify-between mb-4 sm:mb-5"
                           variants={cardContentVariants}
                         >
                           <div className="flex items-center space-x-3 sm:space-x-4">
-                            <motion.div 
+                            <motion.div
                               className="p-2.5 sm:p-4 bg-[hsl(var(--primary))]/10 rounded-xl sm:rounded-2xl text-[hsl(var(--primary))] shadow-sm group-hover:scale-110 transition-transform duration-300"
                               whileHover={{ scale: 1.05, rotate: 3 }}
                               transition={{ duration: 0.3 }}
@@ -193,30 +188,31 @@ export default function Experiences({
                           </div>
                         </motion.div>
 
-                        {/* Informations sur l'entreprise */}
-                        <motion.div 
+                        <motion.div
                           className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4 text-[hsl(var(--muted-foreground))]"
                           variants={cardContentVariants}
                         >
                           <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--primary))]" />
-                          <span className="font-semibold text-base sm:text-lg">{experience.company}</span>
+                          <span className="font-semibold text-base sm:text-lg">
+                            {experience.company}
+                          </span>
                         </motion.div>
 
-                        {/* Période */}
-                        <motion.div 
+                        <motion.div
                           className="flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-5 text-[hsl(var(--muted-foreground))]"
                           variants={cardContentVariants}
                         >
                           <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[hsl(var(--primary))]" />
-                          <span className="font-medium text-sm sm:text-base">{experience.period}</span>
+                          <span className="font-medium text-sm sm:text-base">
+                            {experience.period}
+                          </span>
                         </motion.div>
 
-                        {/* Technologie utilisée - style amélioré */}
-                        <motion.div 
+                        <motion.div
                           className="mb-4 sm:mb-6"
                           variants={cardContentVariants}
                         >
-                          <motion.div 
+                          <motion.div
                             className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2.5 bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-full text-xs sm:text-sm font-bold border border-[hsl(var(--primary))]/20 shadow-sm hover:bg-[hsl(var(--primary))]/15 transition-all duration-300"
                             whileHover={{ scale: 1.03 }}
                             transition={{ duration: 0.2 }}
@@ -226,16 +222,14 @@ export default function Experiences({
                           </motion.div>
                         </motion.div>
 
-                        {/* Description */}
-                        <motion.p 
+                        <motion.p
                           className="text-[hsl(var(--muted-foreground))] leading-relaxed mb-4 sm:mb-6 font-medium text-sm sm:text-base"
                           variants={cardContentVariants}
                         >
                           {experience.description}
                         </motion.p>
 
-                        {/* Compétences - style comme Skills */}
-                        <motion.div 
+                        <motion.div
                           className="flex flex-wrap gap-1.5 sm:gap-2.5"
                           variants={cardContentVariants}
                         >
@@ -255,7 +249,6 @@ export default function Experiences({
                     </motion.div>
                   </div>
 
-                  {/* Espace vide pour l'autre côté sur desktop */}
                   <div className="hidden md:block w-5/12"></div>
                 </motion.div>
               ))}

@@ -2,7 +2,14 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Code2, Eye,ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Code2,
+  Eye,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 import { useState } from "react";
 import FloatingElements from "./floatingElements";
 import {
@@ -33,23 +40,20 @@ export default function Projects({
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Détecter si on est sur mobile
   React.useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+      setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    
-    return () => window.removeEventListener('resize', checkIsMobile);
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
-  
-  // Calculer le nombre de projets par page selon la taille d'écran
+
   const projectsPerPage = isMobile ? 1 : 2;
   const totalPages = Math.ceil(projectsData.length / projectsPerPage);
-  
-  // Obtenir les projets pour la page actuelle
+
   const getCurrentProjects = () => {
     const startIndex = currentIndex * projectsPerPage;
     return projectsData.slice(startIndex, startIndex + projectsPerPage);
@@ -76,7 +80,6 @@ export default function Projects({
       ref={sectionRef}
       className="min-h-screen flex flex-col justify-center relative overflow-hidden text-[hsl(var(--foreground))] py-12 sm:py-16 md:py-20 lg:py-24"
     >
-      {/* Background avec même style que l'accueil */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/image/background3.jpeg"
@@ -89,7 +92,6 @@ export default function Projects({
         <div className="absolute inset-0 bg-[hsl(var(--background))]/100 backdrop-blur-sm" />
       </div>
 
-      {/* Éléments flottants de décoration */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-gradient-to-r from-[hsl(var(--primary))]/8 to-[hsl(var(--primary))]/4 rounded-full blur-3xl"
@@ -143,7 +145,6 @@ export default function Projects({
 
       <div className="relative z-10 w-full mx-auto px-3 sm:px-6 md:px-8 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          {/* Titre de la section */}
           <motion.div
             className="text-center mb-8 lg:mb-12"
             variants={sectionTitleVariants}
@@ -184,7 +185,6 @@ export default function Projects({
             </motion.p>
           </motion.div>
 
-          {/* Indicateur de page et navigation */}
           <motion.div
             className="flex items-center justify-center mb-6 space-x-4"
             initial={{ opacity: 0, y: 20 }}
@@ -192,16 +192,23 @@ export default function Projects({
             transition={{ delay: 0.8, duration: 0.6 }}
           >
             <motion.p className="text-sm text-[hsl(var(--muted-foreground))]">
-              {currentIndex * projectsPerPage + 1}-{Math.min((currentIndex + 1) * projectsPerPage, projectsData.length)} sur {projectsData.length} projets
+              {currentIndex * projectsPerPage + 1}-
+              {Math.min(
+                (currentIndex + 1) * projectsPerPage,
+                projectsData.length
+              )}{" "}
+              sur {projectsData.length} projets
             </motion.p>
             {totalPages > 1 && (
               <motion.p className="text-xs text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 px-3 py-1 rounded-full">
-                {totalPages - currentIndex - 1 > 0 && `${(totalPages - currentIndex - 1) * projectsPerPage} autres projets à découvrir`}
+                {totalPages - currentIndex - 1 > 0 &&
+                  `${
+                    (totalPages - currentIndex - 1) * projectsPerPage
+                  } autres projets à découvrir`}
               </motion.p>
             )}
           </motion.div>
 
-          {/* Carrousel des projets */}
           <div className="relative min-h-[500px] lg:min-h-[550px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
@@ -216,12 +223,20 @@ export default function Projects({
                   opacity: { duration: 0.3 },
                   scale: { duration: 0.4 },
                 }}
-                className={`grid gap-6 lg:gap-8 ${getCurrentProjects().length === 1 ? 'grid-cols-1 lg:justify-center' : 'grid-cols-1 lg:grid-cols-2'}`}
+                className={`grid gap-6 lg:gap-8 ${
+                  getCurrentProjects().length === 1
+                    ? "grid-cols-1 lg:justify-center"
+                    : "grid-cols-1 lg:grid-cols-2"
+                }`}
               >
                 {getCurrentProjects().map((project, index) => (
                   <motion.div
                     key={project.id}
-                    className={`group relative ${getCurrentProjects().length === 1 ? 'lg:max-w-md lg:mx-auto' : ''}`}
+                    className={`group relative ${
+                      getCurrentProjects().length === 1
+                        ? "lg:max-w-md lg:mx-auto"
+                        : ""
+                    }`}
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.2, duration: 0.6 }}
@@ -232,7 +247,6 @@ export default function Projects({
                       whileHover="hover"
                       variants={glowVariants}
                     >
-                      {/* Image du projet - Hauteur réduite */}
                       <motion.div
                         className="relative h-48 sm:h-52 lg:h-56 overflow-hidden"
                         variants={imageVariants}
@@ -250,7 +264,6 @@ export default function Projects({
                           />
                         </motion.div>
 
-                        {/* Overlay avec boutons au hover */}
                         <motion.div
                           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-center justify-center space-x-4"
                           variants={overlayVariants}
@@ -293,17 +306,18 @@ export default function Projects({
                         </motion.div>
                       </motion.div>
 
-                      {/* Contenu de la carte - Padding réduit */}
                       <motion.div
                         className="p-4 sm:p-5 relative"
                         variants={cardContentVariants}
                       >
-                        {/* Catégorie */}
                         <motion.div
                           className="flex items-center justify-between mb-3"
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 + 0.4, duration: 0.5 }}
+                          transition={{
+                            delay: index * 0.1 + 0.4,
+                            duration: 0.5,
+                          }}
                         >
                           <motion.span
                             className="px-2 py-1 bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-full text-xs font-bold border border-[hsl(var(--primary))]/20"
@@ -314,27 +328,30 @@ export default function Projects({
                           </motion.span>
                         </motion.div>
 
-                        {/* Titre */}
                         <motion.h3
                           className="font-bold text-lg sm:text-xl text-[hsl(var(--foreground))] mb-3 leading-tight bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))]/70 bg-clip-text text-transparent"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 + 0.5, duration: 0.6 }}
+                          transition={{
+                            delay: index * 0.1 + 0.5,
+                            duration: 0.6,
+                          }}
                         >
                           {project.title}
                         </motion.h3>
 
-                        {/* Description */}
                         <motion.p
                           className="text-[hsl(var(--muted-foreground))] leading-relaxed mb-4 text-sm line-clamp-3"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 + 0.6, duration: 0.6 }}
+                          transition={{
+                            delay: index * 0.1 + 0.6,
+                            duration: 0.6,
+                          }}
                         >
                           {project.description}
                         </motion.p>
 
-                        {/* Technologies - Espacement réduit */}
                         <motion.div
                           className="flex flex-wrap gap-1.5 mb-12"
                           initial="hidden"
@@ -358,12 +375,14 @@ export default function Projects({
                           ))}
                         </motion.div>
 
-                        {/* Boutons d'action */}
                         <motion.div
                           className="absolute bottom-4 right-4 flex gap-2"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.1 + 0.8, duration: 0.6 }}
+                          transition={{
+                            delay: index * 0.1 + 0.8,
+                            duration: 0.6,
+                          }}
                         >
                           {project.demoUrl ? (
                             <motion.a
@@ -392,7 +411,7 @@ export default function Projects({
                               <span>Code</span>
                             </motion.a>
                           ) : null}
-                          
+
                           {project.demoUrl && project.githubUrl && (
                             <motion.a
                               href={project.githubUrl}
@@ -409,7 +428,6 @@ export default function Projects({
                         </motion.div>
                       </motion.div>
 
-                      {/* Effet de brillance au hover */}
                       <motion.div
                         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                         style={{
@@ -430,10 +448,8 @@ export default function Projects({
               </motion.div>
             </AnimatePresence>
 
-            {/* Boutons de navigation modernes */}
             {totalPages > 1 && (
               <>
-                {/* Bouton Précédent */}
                 <motion.button
                   className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))]/30 via-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-md border border-[hsl(var(--primary))]/30 group overflow-hidden"
                   onClick={() => paginate(-1)}
@@ -443,11 +459,10 @@ export default function Projects({
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  {/* Effet de brillance */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-[hsl(var(--primary))]/20 to-transparent -skew-x-12"
                     animate={{
-                      x: ['-100%', '200%'],
+                      x: ["-100%", "200%"],
                     }}
                     transition={{
                       duration: 2,
@@ -456,8 +471,7 @@ export default function Projects({
                       ease: "easeInOut",
                     }}
                   />
-                  
-                  {/* Icônes avec animation */}
+
                   <motion.div
                     className="relative z-10 flex items-center justify-center"
                     whileHover={{ x: -2 }}
@@ -466,7 +480,6 @@ export default function Projects({
                     <ArrowLeft className="w-5 h-5" />
                   </motion.div>
 
-                  {/* Particules flottantes */}
                   <motion.div
                     className="absolute inset-0 pointer-events-none"
                     initial={{ opacity: 0 }}
@@ -496,7 +509,6 @@ export default function Projects({
                   </motion.div>
                 </motion.button>
 
-                {/* Bouton Suivant */}
                 <motion.button
                   className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))]/30 via-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-md border border-[hsl(var(--primary))]/30 group overflow-hidden"
                   onClick={() => paginate(1)}
@@ -506,11 +518,10 @@ export default function Projects({
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  {/* Effet de brillance */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-[hsl(var(--primary))]/20 to-transparent -skew-x-12"
                     animate={{
-                      x: ['-100%', '200%'],
+                      x: ["-100%", "200%"],
                     }}
                     transition={{
                       duration: 2,
@@ -520,8 +531,6 @@ export default function Projects({
                       delay: 1,
                     }}
                   />
-                  
-                  {/* Icônes avec animation */}
                   <motion.div
                     className="relative z-10 flex items-center justify-center"
                     whileHover={{ x: 2 }}
@@ -530,7 +539,6 @@ export default function Projects({
                     <ArrowRight className="w-5 h-5" />
                   </motion.div>
 
-                  {/* Particules flottantes */}
                   <motion.div
                     className="absolute inset-0 pointer-events-none"
                     initial={{ opacity: 0 }}
@@ -563,7 +571,6 @@ export default function Projects({
             )}
           </div>
 
-          {/* Indicateurs de page */}
           {totalPages > 1 && (
             <motion.div
               className="flex justify-center space-x-3 mt-8"
@@ -589,7 +596,6 @@ export default function Projects({
             </motion.div>
           )}
 
-          {/* Bouton Voir Plus avec animation flottante */}
           <motion.div
             className="text-center mt-12 lg:mt-16"
             initial={{ opacity: 0, y: 30, scale: 0.9 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Image from "next/image";
 import {
   ExternalLink,
@@ -75,22 +75,24 @@ export default function Projects({
     }
   };
 
-  // Fonctions pour la gestion du swipe
-  const handleDragEnd = (event: any, { offset, velocity }: any) => {
-    const swipe = swipePower(offset.x, velocity.x);
+const handleDragEnd = (
+  event: MouseEvent | TouchEvent, 
+  { offset, velocity }: PanInfo
+) => {
+  const swipe = swipePower(offset.x, velocity.x);
 
-    if (swipe < -swipeConfidenceThreshold) {
-      paginate(1);
-    } else if (swipe > swipeConfidenceThreshold) {
-      paginate(-1);
-    }
-    
-    setIsDragging(false);
-  };
+  if (swipe < -swipeConfidenceThreshold) {
+    paginate(1);
+  } else if (swipe > swipeConfidenceThreshold) {
+    paginate(-1);
+  }
+  
+  setIsDragging(false);
+};
 
-  const handleDragStart = () => {
-    setIsDragging(true);
-  };
+const handleDragStart = () => {
+  setIsDragging(true);
+};
 
   const swipeConfidenceThreshold = 10000;
   const swipePower = (offset: number, velocity: number) => {

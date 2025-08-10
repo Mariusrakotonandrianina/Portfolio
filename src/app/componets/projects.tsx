@@ -39,6 +39,7 @@ export default function Projects({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   React.useEffect(() => {
     const checkIsMobile = () => {
@@ -72,6 +73,28 @@ export default function Projects({
       setDirection(pageIndex > currentIndex ? 1 : -1);
       setCurrentIndex(pageIndex);
     }
+  };
+
+  // Fonctions pour la gestion du swipe
+  const handleDragEnd = (event: any, { offset, velocity }: any) => {
+    const swipe = swipePower(offset.x, velocity.x);
+
+    if (swipe < -swipeConfidenceThreshold) {
+      paginate(1);
+    } else if (swipe > swipeConfidenceThreshold) {
+      paginate(-1);
+    }
+    
+    setIsDragging(false);
+  };
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+  };
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
   };
 
   return (
@@ -223,11 +246,21 @@ export default function Projects({
                   opacity: { duration: 0.3 },
                   scale: { duration: 0.4 },
                 }}
-                className={`grid gap-6 lg:gap-8 ${
+                drag={isMobile && totalPages > 1 ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
+                whileDrag={{ 
+                  scale: 0.95,
+                  rotateY: 5,
+                  transition: { duration: 0.1 }
+                }}
+                className={`grid gap-6 lg:gap-8 select-none ${
                   getCurrentProjects().length === 1
                     ? "grid-cols-1 lg:justify-center"
                     : "grid-cols-1 lg:grid-cols-2"
-                }`}
+                } ${isDragging ? "cursor-grabbing" : isMobile && totalPages > 1 ? "cursor-grab" : ""}`}
               >
                 {getCurrentProjects().map((project, index) => (
                   <motion.div
@@ -448,7 +481,8 @@ export default function Projects({
               </motion.div>
             </AnimatePresence>
 
-            {totalPages > 1 && (
+            {/* Boutons de navigation - Version desktop */}
+            {totalPages > 1 && !isMobile && (
               <>
                 <motion.button
                   className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-12 h-12 bg-gradient-to-br from-[hsl(var(--primary))]/30 via-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-md border border-[hsl(var(--primary))]/30 group overflow-hidden"
@@ -471,7 +505,6 @@ export default function Projects({
                       ease: "easeInOut",
                     }}
                   />
-
                   <motion.div
                     className="relative z-10 flex items-center justify-center"
                     whileHover={{ x: -2 }}
@@ -479,7 +512,6 @@ export default function Projects({
                   >
                     <ArrowLeft className="w-5 h-5" />
                   </motion.div>
-
                   <motion.div
                     className="absolute inset-0 pointer-events-none"
                     initial={{ opacity: 0 }}
@@ -538,7 +570,6 @@ export default function Projects({
                   >
                     <ArrowRight className="w-5 h-5" />
                   </motion.div>
-
                   <motion.div
                     className="absolute inset-0 pointer-events-none"
                     initial={{ opacity: 0 }}
@@ -569,8 +600,129 @@ export default function Projects({
                 </motion.button>
               </>
             )}
+
+            {/* Boutons de navigation - Version mobile */}
+            {totalPages > 1 && isMobile && (
+              <motion.div 
+                className="flex justify-center items-center space-x-6 mt-6 px-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                <motion.button
+                  className="w-14 h-14 bg-gradient-to-br from-[hsl(var(--primary))]/30 via-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed backdrop-blur-lg border-2 border-[hsl(var(--primary))]/40 group overflow-hidden active:scale-95"
+                  onClick={() => paginate(-1)}
+                  disabled={currentIndex === 0}
+                  variants={modernButtonVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[hsl(var(--primary))]/30 to-transparent -skew-x-12"
+                    animate={{
+                      x: ["-100%", "200%"],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <motion.div
+                    className="relative z-10 flex items-center justify-center"
+                    whileHover={{ x: -3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArrowLeft className="w-6 h-6" />
+                  </motion.div>
+                  
+                  {/* Effet de pulsation pour attirer l'attention */}
+                  <motion.div
+                    className="absolute inset-0 bg-[hsl(var(--primary))]/10 rounded-2xl"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0, 0.5, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </motion.button>
+
+                {/* Indicateur du projet actuel sur mobile */}
+                <motion.div className="flex flex-col items-center space-y-2">
+                  <motion.span 
+                    className="text-xs font-bold text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/10 px-3 py-1 rounded-full border border-[hsl(var(--primary))]/20"
+                    animate={{
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    {currentIndex + 1} / {totalPages}
+                  </motion.span>
+                  <motion.div className="text-xs text-[hsl(var(--muted-foreground))] text-center">
+                    Glissez pour naviguer
+                  </motion.div>
+                </motion.div>
+
+                <motion.button
+                  className="w-14 h-14 bg-gradient-to-br from-[hsl(var(--primary))]/30 via-[hsl(var(--primary))]/20 to-[hsl(var(--primary))]/10 text-[hsl(var(--primary))] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed backdrop-blur-lg border-2 border-[hsl(var(--primary))]/40 group overflow-hidden active:scale-95"
+                  onClick={() => paginate(1)}
+                  disabled={currentIndex === totalPages - 1}
+                  variants={modernButtonVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[hsl(var(--primary))]/30 to-transparent -skew-x-12"
+                    animate={{
+                      x: ["-100%", "200%"],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                      ease: "easeInOut",
+                      delay: 1,
+                    }}
+                  />
+                  <motion.div
+                    className="relative z-10 flex items-center justify-center"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArrowRight className="w-6 h-6" />
+                  </motion.div>
+                  
+                  {/* Effet de pulsation pour attirer l'attention */}
+                  <motion.div
+                    className="absolute inset-0 bg-[hsl(var(--primary))]/10 rounded-2xl"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0, 0.5, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5,
+                    }}
+                  />
+                </motion.button>
+              </motion.div>
+            )}
           </div>
 
+          {/* Indicateurs de page pour desktop et mobile */}
           {totalPages > 1 && (
             <motion.div
               className="flex justify-center space-x-3 mt-8"
@@ -581,18 +733,68 @@ export default function Projects({
               {Array.from({ length: totalPages }).map((_, index) => (
                 <motion.button
                   key={index}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`transition-all duration-300 ${
+                    isMobile 
+                      ? "w-4 h-4 rounded-full shadow-md" 
+                      : "w-3 h-3 rounded-full"
+                  } ${
                     index === currentIndex
-                      ? "bg-[hsl(var(--primary))]"
+                      ? "bg-[hsl(var(--primary))] shadow-lg"
                       : "bg-[hsl(var(--primary))]/30 hover:bg-[hsl(var(--primary))]/50"
                   }`}
                   onClick={() => goToPage(index)}
                   variants={indicatorVariants}
                   animate={index === currentIndex ? "active" : "inactive"}
-                  whileHover={{ scale: 1.3 }}
+                  whileHover={{ scale: isMobile ? 1.4 : 1.3 }}
                   whileTap={{ scale: 0.9 }}
                 />
               ))}
+            </motion.div>
+          )}
+
+          {/* Indicateur de swipe visuel */}
+          {isMobile && totalPages > 1 && (
+            <motion.div
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 pointer-events-none"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ 
+                opacity: isDragging ? 0 : [0, 1, 1, 0],
+                x: isDragging ? -20 : [-20, 0, 10, -20]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 5,
+                ease: "easeInOut",
+              }}
+            >
+              <motion.div className="flex items-center space-x-2 px-3 py-2 bg-[hsl(var(--primary))]/20 backdrop-blur-md rounded-lg border border-[hsl(var(--primary))]/30">
+                <ArrowLeft className="w-4 h-4 text-[hsl(var(--primary))]" />
+                <span className="text-xs text-[hsl(var(--primary))] font-medium">Glissez</span>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {isMobile && totalPages > 1 && (
+            <motion.div
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 pointer-events-none"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ 
+                opacity: isDragging ? 0 : [0, 1, 1, 0],
+                x: isDragging ? 20 : [20, 0, -10, 20]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 5,
+                ease: "easeInOut",
+                delay: 1.5,
+              }}
+            >
+              <motion.div className="flex items-center space-x-2 px-3 py-2 bg-[hsl(var(--primary))]/20 backdrop-blur-md rounded-lg border border-[hsl(var(--primary))]/30">
+                <span className="text-xs text-[hsl(var(--primary))] font-medium">Glissez</span>
+                <ArrowRight className="w-4 h-4 text-[hsl(var(--primary))]" />
+              </motion.div>
             </motion.div>
           )}
 
